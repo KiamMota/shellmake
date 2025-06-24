@@ -1,14 +1,8 @@
 
-# shmake Development Guide
+## shmake Development Guide
 
-This document defines standards, architecture, and best practices to contribute to shmake, ensuring clean, modular, and maintainable code.
+This document defines standards, architecture, and best practices to ensure clean, modular, and maintainable contributions to shmake.
 
----
-
-```bash
-git clone https://github.com/yourusername/shmake.git
-cd shmake
-git remote add shmake_contrib https://github.com/otheruser/shmake_contrib.git
 
 ## Architecture and General Standards
 
@@ -54,9 +48,15 @@ This separation reduces coupling and simplifies unit testing.
 
 ---
 
+
+
 ## Contribution Rules and Workflow
 
 ### Repository Setup
 
 Clone the main repository:
 
+```bash
+git clone https://github.com/yourusername/shmake.git
+cd shmake
+git remote add shmake_contrib https://github.com/otheruser/shmake_contrib.git
