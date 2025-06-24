@@ -8,15 +8,17 @@ typedef struct
 {
   FILE* file_ptr;
   char* file_name;
-  char* file_string[255];
+  char* buffer;
   int current_line;
-  int size;
+  long lenght;
 } FILE_STRUCT;
 
 FILE_STRUCT* f_init_file(char* file_name);
-void         f_destroy_file(FILE_STRUCT** file_struct);
+void         f_destroy_file(FILE_STRUCT** fs);
 int          f_file_exists(char* file_string);
-int          f_open_file(FILE_STRUCT* file_struct);
-int          f_close_file(FILE_STRUCT* file_struct);
+void         f_buffer_init(FILE_STRUCT* fs);
+int          f_openr_file(FILE_STRUCT* fs);
+int          f_openw_file(FILE_STRUCT* fs);
+int          f_close_file(FILE_STRUCT* fs);
 
 #endif

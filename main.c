@@ -16,7 +16,9 @@ int main(int argn, char* args[])
   if(f_file_exists(file_context))
   {
     FILE_STRUCT* file = f_init_file(file_context);
-    printf("arquivo existe! \n");
+    f_open_file(file);
+    f_buffer_init(file);
+    printf("%s", file->buffer);
   }else
   {
     printf("arquivo não existe");

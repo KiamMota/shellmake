@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "file/shfile.h"
 
 FILE_STRUCT* f_init_file(char* file_name)
@@ -6,22 +7,13 @@ FILE_STRUCT* f_init_file(char* file_name)
   FILE_STRUCT* fs_factory;
   fs_factory->file_name = file_name;
   fs_factory->current_line = 0;
-  fs_factory->file_ptr = fopen(fs_factory->file_name, "a");
-  fseek(fs_factory->file_ptr, 0, SEEK_END);
-  fs_factory->size = ftell(fs_factory->file_ptr);
-  fseek(fs_factory->file_ptr, 0, SEEK_SET);
   return fs_factory;
 }
 
-void f_destroy_file(FILE_STRUCT** file_struct)
+void f_destroy_file(FILE_STRUCT** fs)
 {
-  if(*file_struct)
-  {
-    if((*file_struct)->file_ptr) 
-      fclose((*file_struct)->file_ptr);
-    free(*file_struct);
-    *file_struct = NULL;
-  }
+  free(*fs);
+  *fs = NULL;
 }
 
 int f_file_exists(char* file_exists)
@@ -32,9 +24,19 @@ int f_file_exists(char* file_exists)
   return 1;
 }
 
+void f_buffer_init(FILE_STRUCT* fs)
+{
+  fseek(fs->file_ptr, 0, SEEK_END);
+  fs->lenght = ftell(fs->file_ptr);
+  rewind(fs->file_ptr);
+  fs->buffer = malloc(fs->lenght + 1);
+  fread(fs->buffer, 1, fs->lenght, fs->file_ptr);
+  fs->buffer[fs->lenght] = '\0';
+}
+
 int f_open_file(FILE_STRUCT* file_struct)
 {
-  file_struct->file_ptr = fopen(file_struct->file_name, "a");
+  file_struct->file_ptr = fopen(file_struct->file_name, "rb");
   if(!file_struct->file_ptr) return -1;
   return 1;
 }
