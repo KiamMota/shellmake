@@ -16,8 +16,11 @@ int main(int argn, char* args[])
   if(f_file_exists(file_context))
   {
     FILE_STRUCT* file = f_init_file(file_context);
-    f_open_file(file);
-    f_buffer_init(file);
+    if(f_openr_file(file))
+    {
+      printf("o arquivo foi aberto para leitura \n");
+      f_buffer_init(file);
+    }else printf("o arquivo não foi aberto \n");
     printf("%s", file->buffer);
   }else
   {
