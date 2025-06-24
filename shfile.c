@@ -24,10 +24,18 @@ void destroy_filestruct(FILE_STRUCT** file_struct)
   }
 }
 
-void file_content_tostr(FILE_STRUCT* struct_file, char* buffer)
+int open_file(FILE_STRUCT* file_struct)
 {
-  buffer = (char*)malloc(struct_file->size);
-   
+  file_struct->file_ptr = fopen(file_struct->file_name, "a");
+  if(!file_struct->file_ptr) return -1;
+  return 1;
+}
 
-  
+int close_file(FILE_STRUCT* file_struct)
+{
+  if(file_struct->file_ptr){
+    fclose(file_struct->file_ptr);
+    return 1;
+  }
+  return -1;
 }

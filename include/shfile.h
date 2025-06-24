@@ -15,7 +15,7 @@ typedef struct
 
 FILE_STRUCT* init_file(char* file_name);
 void destroy_filestruct(FILE_STRUCT** file_struct);
-
-void open_file(FILE_STRUCT* file_struct);
+int open_file(FILE_STRUCT* file_struct);
+int close_file(FILE_STRUCT* file_struct);
 
 #endif
