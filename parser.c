@@ -1,5 +1,4 @@
 #include "interpreter/parser.h"
-#include <cstddef>
 #include <string.h>
 
 PARSER_STRUCT* ps_init_parser()
@@ -19,5 +18,5 @@ void ps_destroy_parser(PARSER_STRUCT** ps)
 int find_context(PARSER_STRUCT* ps, char* buffer)
 {
   char* pos = strstr("buffer", "# !shm");
-  if(pos != NULL) 
+  /* todo */
 }
