@@ -5,7 +5,7 @@ project(shmake)
 set(SOURCES
     main.c
     shfile.c
-    shf_string_validation.c
+    string_validation.c
 )
 
 add_executable(shmake ${SOURCES})

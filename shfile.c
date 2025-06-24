@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "shfile.h"
+#include "file/shfile.h"
 
-FILE_STRUCT* init_file(char* file_name)
+FILE_STRUCT* f_init_file(char* file_name)
 {  
   FILE_STRUCT* fs_factory;
   fs_factory->file_name = file_name;
@@ -13,7 +13,7 @@ FILE_STRUCT* init_file(char* file_name)
   return fs_factory;
 }
 
-void destroy_filestruct(FILE_STRUCT** file_struct)
+void f_destroy_file(FILE_STRUCT** file_struct)
 {
   if(*file_struct)
   {
@@ -24,14 +24,22 @@ void destroy_filestruct(FILE_STRUCT** file_struct)
   }
 }
 
-int open_file(FILE_STRUCT* file_struct)
+int f_file_exists(char* file_exists)
+{
+  FILE* eph_file = fopen(file_exists, "r");
+  if(!eph_file) return 0;
+  fclose(eph_file);
+  return 1;
+}
+
+int f_open_file(FILE_STRUCT* file_struct)
 {
   file_struct->file_ptr = fopen(file_struct->file_name, "a");
   if(!file_struct->file_ptr) return -1;
   return 1;
 }
 
-int close_file(FILE_STRUCT* file_struct)
+int f_close_file(FILE_STRUCT* file_struct)
 {
   if(file_struct->file_ptr){
     fclose(file_struct->file_ptr);
@@ -39,3 +47,4 @@ int close_file(FILE_STRUCT* file_struct)
   }
   return -1;
 }
+
