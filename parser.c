@@ -1,26 +1,23 @@
+#include "interpreter/parser.h"
+#include <cstddef>
+#include <string.h>
 
-#include "parse.h"
-
-int find_start(char* string)
+PARSER_STRUCT* ps_init_parser()
 {
-  if(!string) return -1;
-  char* pos = strstr(string, "# ! start shmake");
-  if(pos != NULL) 
-  {
-    int size= (int)(pos - string);
-    return size;
-  }
-  return -1;
+  PARSER_STRUCT* ps = malloc(sizeof(PARSER_STRUCT));
+  ps->state = IDLE;
+  ps->p_tochr = 0;
+  return ps;
 }
 
-int find_end(char* string)
+void ps_destroy_parser(PARSER_STRUCT** ps)
 {
-  if(!string) return -1;
-  char* pos = strstr(string, "# ! end shmake");
-  if(pos != NULL)
-  {
-    int index = (int)(pos - string);
-    return index;
-  }
-  return -1;
+  if(ps && *ps) free(*ps);
+  *ps = NULL;
+}
+
+int find_context(PARSER_STRUCT* ps, char* buffer)
+{
+  char* pos = strstr("buffer", "# !shm");
+  if(pos != NULL) 
 }

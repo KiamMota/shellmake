@@ -2,6 +2,10 @@
 #include <string.h>
 #include "file/shfile.h"
 
+int  _file_exists(char* file_exists);
+void _buffer_init(FILE_STRUCT* fs);
+
+
 FILE_STRUCT* f_init_file(char* file_name)
 {  
   FILE_STRUCT* fs_factory = malloc(sizeof(FILE_STRUCT));
@@ -16,23 +20,6 @@ void f_destroy_file(FILE_STRUCT** fs)
   *fs = NULL;
 }
 
-int f_file_exists(char* file_exists)
-{
-  FILE* eph_file = fopen(file_exists, "r");
-  if(!eph_file) return 0;
-  fclose(eph_file);
-  return 1;
-}
-
-void f_buffer_init(FILE_STRUCT* fs)
-{
-  fseek(fs->file_ptr, 0, SEEK_END);
-  fs->lenght = ftell(fs->file_ptr);
-  rewind(fs->file_ptr);
-  fs->buffer = malloc(fs->lenght + 1);
-  fread(fs->buffer, 1, fs->lenght, fs->file_ptr);
-  fs->buffer[fs->lenght] = '\0';
-}
 
 int f_openr_file(FILE_STRUCT* file_struct)
 {
@@ -50,3 +37,29 @@ int f_close_file(FILE_STRUCT* file_struct)
   return -1;
 }
 
+int f_validate_and_start_buffer(FILE_STRUCT* fs, char* buffer)
+{
+  if(!_file_exists(fs->file_name)) return -1;
+  _buffer_init(fs);
+  buffer = (char*)malloc(sizeof(fs->buffer));
+  strcpy(buffer, fs->buffer);
+  return 1;
+}
+
+int _file_exists(char* file_name)
+{
+  FILE* eph_file = fopen(file_name, "r");
+  if(!eph_file) return 0;
+  fclose(eph_file);
+  return 1;
+}
+
+void _buffer_init(FILE_STRUCT* fs)
+{
+  fseek(fs->file_ptr, 0, SEEK_END);
+  fs->lenght = ftell(fs->file_ptr);
+  rewind(fs->file_ptr);
+  fs->buffer = malloc(fs->lenght + 1);
+  fread(fs->buffer, 1, fs->lenght, fs->file_ptr);
+  fs->buffer[fs->lenght] = '\0';
+}

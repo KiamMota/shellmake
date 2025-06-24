@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "file/shfile.h"
 #include "string_validation.h"
-#include "parse.h"
 
 int main(int argn, char* args[])
 {
@@ -16,18 +15,11 @@ int main(int argn, char* args[])
   
   validate_shf_suffix(file_name);
   remove_nl(file_name);  
-  if(f_file_exists(file_name))
+  FILE_STRUCT* file = f_init_file(file_name);
+  if(f_openr_file(file))
   {
-    FILE_STRUCT* file = f_init_file(file_name);
-    if(f_openr_file(file))
-    {
-      printf("o arquivo foi aberto para leitura \n");
-      f_buffer_init(file);
-    }else printf("o arquivo não foi aberto \n");
-    printf("%s", file->buffer);
-  }else
-  {
-    printf("arquivo não existe");
+    printf("arquivo aberto\n");
   }
-
+  f_validate_and_start_buffer(file, file_buffer);
+  printf("buffer state %s", file->buffer);
 }

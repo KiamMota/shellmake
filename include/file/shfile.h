@@ -15,8 +15,7 @@ typedef struct
 
 FILE_STRUCT* f_init_file(char* file_name);
 void         f_destroy_file(FILE_STRUCT** fs);
-int          f_file_exists(char* file_string);
-void         f_buffer_init(FILE_STRUCT* fs);
+int          f_validate_and_start_buffer(FILE_STRUCT* fs, char* buffer);
 int          f_openr_file(FILE_STRUCT* fs);
 int          f_close_file(FILE_STRUCT* fs);
 
