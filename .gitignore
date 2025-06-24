@@ -1,0 +1,4 @@
+.cache/
+.vscode/
+build/
+command_settings.json
