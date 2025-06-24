@@ -1,10 +1,9 @@
-#include <cstdio>
 #include <stdio.h>
 #include "shfile.h"
 
-struct file_struct* init_file(char* file_name)
+FILE_STRUCT* init_file(char* file_name)
 {  
-  struct file_struct* fs_factory;
+  FILE_STRUCT* fs_factory;
   fs_factory->file_name = file_name;
   fs_factory->current_line = 0;
   fs_factory->file_ptr = fopen(fs_factory->file_name, "a");
@@ -14,7 +13,7 @@ struct file_struct* init_file(char* file_name)
   return fs_factory;
 }
 
-void destroy_filestruct(struct file_struct** file_struct)
+void destroy_filestruct(FILE_STRUCT** file_struct)
 {
   if(*file_struct)
   {
@@ -25,7 +24,7 @@ void destroy_filestruct(struct file_struct** file_struct)
   }
 }
 
-void file_content_tostr(struct file_struct* struct_file, char* buffer)
+void file_content_tostr(FILE_STRUCT* struct_file, char* buffer)
 {
   buffer = (char*)malloc(struct_file->size);
    
