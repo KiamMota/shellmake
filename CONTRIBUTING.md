@@ -1,14 +1,8 @@
 
-# shmake Development Guide
+## shmake Development Guide
 
-This document defines standards, architecture, and best practices to contribute to shmake, ensuring clean, modular, and maintainable code.
+This document defines standards, architecture, and best practices to ensure clean, modular, and maintainable contributions to shmake.
 
----
-
-```bash
-git clone https://github.com/yourusername/shmake.git
-cd shmake
-git remote add shmake_contrib https://github.com/otheruser/shmake_contrib.git
 
 ## Architecture and General Standards
 
@@ -53,6 +47,13 @@ This separation reduces coupling and simplifies unit testing.
 3. The **Interpretation System** processes only strings, ignoring physical files.
 
 ---
+
+```bash
+git clone https://github.com/yourusername/shmake.git
+cd shmake
+git remote add shmake_contrib https://github.com/otheruser/shmake_contrib.git
+
+
 
 ## Contribution Rules and Workflow
 
