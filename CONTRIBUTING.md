@@ -48,11 +48,6 @@ This separation reduces coupling and simplifies unit testing.
 
 ---
 
-```bash
-git clone https://github.com/yourusername/shmake.git
-cd shmake
-git remote add shmake_contrib https://github.com/otheruser/shmake_contrib.git
-
 
 
 ## Contribution Rules and Workflow
@@ -61,3 +56,7 @@ git remote add shmake_contrib https://github.com/otheruser/shmake_contrib.git
 
 Clone the main repository:
 
+```bash
+git clone https://github.com/yourusername/shmake.git
+cd shmake
+git remote add shmake_contrib https://github.com/otheruser/shmake_contrib.git
