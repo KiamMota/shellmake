@@ -41,13 +41,6 @@ int f_openr_file(FILE_STRUCT* file_struct)
   return 1;
 }
 
-int f_openw_file(FILE_STRUCT* fs)
-{
-  fs->file_ptr = fopen(fs->file_name, "a");
-  if(!fs->file_ptr) return -1;
-  return 1;
-}
-
 int f_close_file(FILE_STRUCT* file_struct)
 {
   if(file_struct->file_ptr){

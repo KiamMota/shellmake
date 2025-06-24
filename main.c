@@ -5,17 +5,20 @@
 
 int main(int argn, char* args[])
 {
-  char file_context[1024];
+  
+  char file_name[1024];
+  char* file_buffer;
+
   printf("file to read: ");
   /* string_validate pipeline*/
   
-  fgets(file_context, sizeof(file_context), stdin);
+  fgets(file_name, sizeof(file_name), stdin);
   
-  validate_shf_suffix(file_context);
-  remove_nl(file_context);  
-  if(f_file_exists(file_context))
+  validate_shf_suffix(file_name);
+  remove_nl(file_name);  
+  if(f_file_exists(file_name))
   {
-    FILE_STRUCT* file = f_init_file(file_context);
+    FILE_STRUCT* file = f_init_file(file_name);
     if(f_openr_file(file))
     {
       printf("o arquivo foi aberto para leitura \n");

@@ -18,7 +18,6 @@ void         f_destroy_file(FILE_STRUCT** fs);
 int          f_file_exists(char* file_string);
 void         f_buffer_init(FILE_STRUCT* fs);
 int          f_openr_file(FILE_STRUCT* fs);
-int          f_openw_file(FILE_STRUCT* fs);
 int          f_close_file(FILE_STRUCT* fs);
 
 #endif
