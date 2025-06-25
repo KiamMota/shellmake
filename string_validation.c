@@ -1,4 +1,4 @@
-#include "string_validation.h"
+#include "file/string_validation.h"
 #include <stddef.h>
 
 int validate_shf_suffix(char *file_context)

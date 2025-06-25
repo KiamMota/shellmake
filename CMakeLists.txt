@@ -7,6 +7,7 @@ set(SOURCES
     shfile.c
     string_validation.c
     parser.c
+    io.c
 )
 
 add_executable(shmake ${SOURCES})

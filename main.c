@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "cli/io.h"
 #include "file/shfile.h"
 #include "file/string_validation.h"
 
@@ -22,4 +23,6 @@ int main(int argn, char* args[])
   }
   f_validate_and_start_buffer(file, file_buffer);
   printf("buffer state %s", file->buffer);
+  log_printf(LOG_GREEN, "init buffer");
+
 }
