@@ -2,9 +2,11 @@
 #include "cli/io.h"
 #include "file/shfile.h"
 #include "file/string_validation.h"
+#include "events.h"
 
 int main(int argn, char* args[])
 {  
+  SHMEVENT* shmf_ptr = init_event();
   char file_name[1024];
   char* file_buffer;
 
@@ -21,6 +23,5 @@ int main(int argn, char* args[])
     printf("arquivo aberto\n");
   }
   f_validate_and_start_buffer(file, file_buffer);
-  printf("buffer state %s", file->buffer);
   log_printf(LOG_GREEN, "init buffer");
 }
