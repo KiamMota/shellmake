@@ -10,8 +10,7 @@ typedef enum
   LOG_WHITE
 } COLOR;
 
-void log_printf(COLOR C, const char* literal);
-
+void log_printf(COLOR C, const char* literal_str, short brk_line);
 
 
 #endif

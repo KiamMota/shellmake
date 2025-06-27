@@ -8,6 +8,7 @@ set(SOURCES
     src/string_validation.c
     src/parser.c
     src/io.c
+    src/event.c
 )
 
 add_executable(shmake ${SOURCES})

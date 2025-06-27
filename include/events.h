@@ -17,7 +17,7 @@ typedef enum
 
 } SHMEVENT;
 
-SHMEVENT* init_event();
+SHMEVENT* shev_init_event();
 
 #endif
 

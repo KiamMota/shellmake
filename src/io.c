@@ -3,7 +3,7 @@
 #include "cli/defines.h"
 #include <stdio.h>
 
-void log_printf(COLOR C, const char* literal)
+void log_printf(COLOR C, const char* literal, short brk_line)
 {
   switch (C) {
   default:
@@ -19,6 +19,15 @@ void log_printf(COLOR C, const char* literal)
     SET_RED();
     break;
   } 
-  printf("-> %s", literal);
+  if (!brk_line) printf("%s", literal);
+  else
+  {
+    for(short i = 0; i<brk_line; i++)
+    {
+      printf("%s", literal);
+      printf("\n"); 
+    }  
+  }
+  fflush(stdout);
   SET_WHITE();
 }
