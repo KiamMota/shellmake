@@ -3,11 +3,11 @@ cmake_minimum_required(VERSION 3.10)
 project(shmake)
 
 set(SOURCES
-    main.c
-    shfile.c
-    string_validation.c
-    parser.c
-    io.c
+    src/main.c
+    src/shfile.c
+    src/string_validation.c
+    src/parser.c
+    src/io.c
 )
 
 add_executable(shmake ${SOURCES})
