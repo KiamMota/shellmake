@@ -2,3 +2,5 @@
 .vscode/
 build/
 command_settings.json
+shmake
+shellmake
