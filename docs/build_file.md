@@ -32,7 +32,7 @@ This JSON file includes key-value pairs that define build behavior.
 | `exclude`                  | array of strings | Distros to skip during processing                         |
 | `target_env`               | string           | Environment type (e.g., `"linux"`, `"bsd"`)               |
 | `output`                   | string           | Output file name (e.g., `"setup.sh"`)                     |
-| `shell`                    | string           | (Future) target shell (e.g., `"bash"`)                    |
+| `shell`                    | array of strings | (Future) target shell (e.g., `["bash", "zsh"]`)           |
 | `debug_mode`               | boolean          | Enables verbose logging                                   |
 | `require_root`             | boolean          | Fails if user is not root or has no sudo                  |
 | `enforce_variables`        | array of strings | Variables that must exist at runtime (e.g., `["DISTRO"]`) |
