@@ -24,6 +24,7 @@ typedef struct
 }ENV_VARS;
 
 ENV_VARS* alloc_envvars();
+void      destroy_envvars(ENV_VARS** evar);
 int env_get_distro(ENV_VARS* evar);
 int env_get_username(ENV_VARS* evar);
 int env_get_hostname(ENV_VARS* evar);

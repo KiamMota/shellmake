@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.10)
 
 project(shmake C)
 
+set(FILEBUILD_SRC
+    src/buildfile/bf_file.c
+    src/buildfile/bf_cmd.c
+)
+
 set(SOURCES
     src/main.c
     src/shfile.c
@@ -13,6 +18,10 @@ set(SOURCES
     src/env_var.c
 )
 
-add_executable(shmake ${SOURCES})
+set(ALL_SRC
+    ${SOURCES} ${FILEBUILD_SRC}
+)
+
+add_executable(shmake ${ALL_SRC})
 
 target_include_directories(shmake PUBLIC include)
