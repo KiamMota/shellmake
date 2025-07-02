@@ -6,21 +6,20 @@ Shellmake uses environment variables denoted by `${variable}` within its directi
 
 These variables represent values available at **runtime** or set in the environment where shellmake runs. They allow conditions and commands to adapt based on the current context, such as the target system, user settings, or other external parameters.
 
-## When and How Are They Set?
-
-- Variables inside `${}` are **evaluated during shellmake's preprocessing phase**, before the script execution.
-- They can be inherited from the environment or explicitly defined before running shellmake.
-- Their values control conditional blocks (`if ${distro} == "arch" :`) and influence command behavior.
-
 ## Usage
 
 By referencing `${variable}`, shellmake scripts become flexible, reacting to the environment dynamically without hardcoding values.
 
----
-
 ## Environment Variables Space
 
-Here is the section reserved for listing all available shellmake environment variables:
+`DISTRO`      -> returns a lowercase string with the name of the Linux distribution or operating system
 
-*(Insert shellmake environment variables list here)*
+`USER_NAME`   -> returns the current user's username as a string
 
+`SUPER_USER`  -> returns "true" if the user has root or sudo privileges, otherwise "false"
+
+`HOSTNAME`    -> returns the system's hostname as a string
+
+`ARCH`        -> returns the system architecture as a string (e.g., "x86_64", "arm64")
+
+`SHELL`       -> returns the path or name of the current shell in use (e.g., "/bin/bash")
