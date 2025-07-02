@@ -4,6 +4,9 @@
 #ifndef _PARSE_H_
 #define _PARSE_H_
 
+#define SHM_METAC_FLAG "!shm"
+#define SHM_METAC_ENDFLAG "!eshm"
+
 typedef enum 
 {
   PSS_IDLE,
@@ -17,7 +20,7 @@ typedef enum
 typedef struct
 {
   char* buffer;
-  char* p_tochr;
+  char* index;
   char* context;
   PARSER_STATES state;
 } PARSER_STRUCT;
@@ -25,10 +28,9 @@ typedef struct
 PARSER_STRUCT* ps_init_parser(char* buffer);
 void ps_destroy_parser(PARSER_STRUCT** ps);
 
-int find_context(PARSER_STRUCT* ps);
-int find_endcontext(PARSER_STRUCT* ps);
-
-int ps_read_file(PARSER_STRUCT* ps);
+int ps_find_context(char** ps);
+int ps_find_endcontext(char** ps);
+void parser_pipe(PARSER_STRUCT* ps);
 
 
 #endif

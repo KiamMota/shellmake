@@ -44,12 +44,19 @@ int f_close_file(FILE_STRUCT* file_struct)
 int f_start_buffer(FILE_STRUCT* fs, char** buffer)
 {
   fseek(fs->file_ptr, 0, SEEK_END);
+  
   fs->lenght = ftell(fs->file_ptr);
+  
   rewind(fs->file_ptr);
+  
   fs->buffer = malloc(fs->lenght + 1);
+  
   fread(fs->buffer, 1, fs->lenght, fs->file_ptr);
+  
   fs->buffer[fs->lenght] = '\0';
+  
   *buffer = malloc(fs->lenght + 1);
+  
   if(!*buffer) return 0;
   strcpy(*buffer, fs->buffer);
   return 1;

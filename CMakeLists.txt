@@ -9,6 +9,8 @@ set(SOURCES
     src/parser.c
     src/io.c
     src/event.c
+    src/parser_pipe.c
+    src/env_var.c
 )
 
 add_executable(shmake ${SOURCES})

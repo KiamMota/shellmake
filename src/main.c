@@ -1,13 +1,16 @@
+#include "env_var.h"
 #include "cli/io.h"
 #include "file/shfile.h"
 #include "file/string_validation.h"
 #include "interpreter/parser.h"
 #include <stdio.h>
-#include <threads.h>
 
 int main(int argn, char *args[]) {
   char file_name[1024];
   char *file_buffer;
+    ENV_VARS* env_vars = get_distro();
+  printf("sua distro > %s \n", env_vars->DISTRO);
+
 
   printf("file to read: ");
   /* string_validate pipeline*/
@@ -33,6 +36,6 @@ int main(int argn, char *args[]) {
     log_printf(LOG_GREEN, " -> started buffer", 1);
   }
   log_printf(LOG_GREEN, " -> reading to read", 1);
-  printf("TO DEBUG: %s GUBED\n", file_buffer);
-
+  PARSER_STRUCT* ps = ps_init_parser(file_buffer);
+  parser_pipe(ps);
 }
