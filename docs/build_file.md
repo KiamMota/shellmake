@@ -28,8 +28,10 @@ These define which distributions the script supports, targets, or excludes:
 
 | cmd              | type          | description                                                             |
 |------------------|---------------|-------------------------------------------------------------------------|
-| `distro_origins` | arr[string] | indicator of which source distribution(s) the scripts were written for. |
-| `distro_targets` | arr[string] | indicator of which distribution(s) will be manufactured.                |
+| `distro_origins` | arr[string] | indicator of which source distribution(s) the scripts were written for.   |
+| `distro_targets` | arr[string] | indicator of which distribution(s) will be manufactured.                  |
+| `distro_exclude` | arr[string] | force stop shellmake processing on specified distros.                     |
+
 
 ### Other Build Commands
 
