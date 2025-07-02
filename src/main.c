@@ -8,9 +8,7 @@
 int main(int argn, char *args[]) {
   char file_name[1024];
   char *file_buffer;
-    ENV_VARS* env_vars = get_distro();
-  printf("sua distro > %s \n", env_vars->DISTRO);
-
+  ENV_VARS* evars = alloc_envvars();
 
   printf("file to read: ");
   /* string_validate pipeline*/

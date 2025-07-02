@@ -19,15 +19,14 @@ typedef struct
 {
   char* DISTRO;
   char* USERNAME;
-  int*  SUPER_USER;
   char* HOSTNAME;
   ARCHTECTURE* ARCH;
 }ENV_VARS;
 
-ENV_VARS* get_distro();
-ENV_VARS* get_username();
-ENV_VARS* get_superuser();
-ENV_VARS* get_hostname();
-ENV_VARS* get_arch();
+ENV_VARS* alloc_envvars();
+int env_get_distro(ENV_VARS* evar);
+int env_get_username(ENV_VARS* evar);
+int env_get_hostname(ENV_VARS* evar);
+int env_get_arch(ENV_VARS* evar);
 
 #endif
