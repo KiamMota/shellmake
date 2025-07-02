@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.10)
 
 project(shmake C)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 set(FILEBUILD_SRC
     src/buildfile/bf_file.c
     src/buildfile/bf_cmd.c
@@ -23,5 +25,4 @@ set(ALL_SRC
 )
 
 add_executable(shmake ${ALL_SRC})
-
 target_include_directories(shmake PUBLIC include)
