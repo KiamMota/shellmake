@@ -40,4 +40,4 @@ These define which distributions the script supports, targets, or excludes:
 | `minimum_version_required` 	| string      	| minimum version of shellmake in your environment required to run.                        	|
 | `filename`             	| string      	| root name of the output files (does not count the additional ones from the builds made). 	|
 | `shell_targets`            	| arr[string] 	| indicates which shell the manufactured scripts output to.                                	|
-| `root`            	| boolean     	| fail if the user is not root or lacks sudo.                                              	|
+| `required_root`            	| boolean     	| fail if the user is not root or lacks sudo.                                              	|
