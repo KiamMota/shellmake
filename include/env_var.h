@@ -1,4 +1,5 @@
 #include "stdlib.h"
+#include "shellmake.h"
 
 #ifndef _ENV_VARHS_H_
 #define _ENV_VARHS_H_
@@ -25,9 +26,9 @@ typedef struct
 
 ENV_VARS* alloc_envvars();
 void      destroy_envvars(ENV_VARS** evar);
-int env_get_distro(ENV_VARS* evar);
-int env_get_username(ENV_VARS* evar);
-int env_get_hostname(ENV_VARS* evar);
-int env_get_arch(ENV_VARS* evar);
+BOOL env_get_distro(ENV_VARS* evar);
+BOOL env_get_username(ENV_VARS* evar);
+BOOL env_get_hostname(ENV_VARS* evar);
+BOOL env_get_arch(ENV_VARS* evar);
 
 #endif

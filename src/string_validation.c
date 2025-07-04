@@ -1,16 +1,16 @@
 #include "file/string_validation.h"
 #include <stddef.h>
 
-int validate_shf_suffix(char *file_context)
+int f_validate_suffix(char *file_context, char* suffix)
 {
-  char* pos = strstr(file_context, ".sh");
+  char* pos = strstr(file_context, suffix);
   if(pos != NULL) return 1;
   return 0;
 }
 
-void remove_nl(char *shf_string)
+void f_remove_nl(char *sh)
 {
-  char* pos = strchr(shf_string, '\n');
+  char* pos = strchr(sh, '\n');
   if(pos) *pos = '\0';
   else return;
 }

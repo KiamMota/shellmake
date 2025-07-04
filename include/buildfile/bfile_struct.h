@@ -1,4 +1,4 @@
-#include "buildfile/bf_cmd.h"
+#include "buildfile/buildfile_cmd.h"
 #include "stdlib.h"
 #include <string.h>
 

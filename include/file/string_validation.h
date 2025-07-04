@@ -2,6 +2,8 @@
 
 #ifndef _SHF_STRING_VALIDATION_H_
 #define _SHF_STRING_VALIDATION_H_
-int validate_shf_suffix(char *file_context);
-void remove_nl(char *pos);
+
+int f_validate_suffix(char *file_name, char* suffix);
+void f_remove_nl(char *pos);
+
 #endif

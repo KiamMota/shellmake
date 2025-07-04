@@ -9,13 +9,13 @@ ENV_VARS* alloc_envvars()
   return evars;
 }
 
-int env_get_distro(ENV_VARS* evar) {
+BOOL env_get_distro(ENV_VARS* evar) {
   char* eph_buffer = malloc(256);
   char* eph_start = eph_buffer;
   FILE *fp = popen("cat /etc/os-release | grep '^ID='", "r");
   if (fgets(eph_buffer, 256, fp) == NULL)
   {
-    return -1;
+    return GENERIC_ERR;
   }
     evar->DISTRO = malloc(strlen(eph_start) + 1);
     char* idpos = strstr(eph_buffer, "ID=");
@@ -26,33 +26,33 @@ int env_get_distro(ENV_VARS* evar) {
 
   pclose(fp);
   free(eph_buffer);
-  return 1;
+  return TRUE;
 }
 
-int env_get_username(ENV_VARS* evar)
+BOOL env_get_username(ENV_VARS* evar)
 {
   char* cmd = "whoami";
   char* eph_result = malloc(256);
   FILE* fp = popen(cmd, "r");
-  if(fgets(eph_result, 256, fp) == NULL) return -1;
+  if(fgets(eph_result, 256, fp) == NULL) return GENERIC_ERR;
   evar->USERNAME = malloc(strlen(eph_result));
   strcpy(evar->USERNAME, eph_result);
-  return 1;
+  return TRUE;
 }
 
-int env_get_hostname(ENV_VARS* evar)
+BOOL env_get_hostname(ENV_VARS* evar)
 {
   char* cmd = "hostname";
   char* eph_result = malloc(256);
   FILE* fp = popen(cmd, "r");
-  if(fgets(eph_result, 256, fp) == NULL) return -1;
+  if(fgets(eph_result, 256, fp) == NULL) return TRUE;
   
   evar->HOSTNAME = malloc(strlen(eph_result));
   strcpy(evar->HOSTNAME, eph_result);
-  return 1;
+  return TRUE;
 }
 
-int env_get_arch(ENV_VARS* evar)
+BOOL env_get_arch(ENV_VARS* evar)
 {
  /*todo*/ 
 }

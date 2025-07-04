@@ -1,4 +1,4 @@
-#include "buildfile/file_struct.h"
+#include "buildfile/bfile_struct.h"
 
 BUILDFILE* bf_init(char* buffer)
 {

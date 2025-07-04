@@ -1,40 +1,25 @@
-#include "env_var.h"
-#include "cli/io.h"
 #include "file/file_struct.h"
 #include "file/string_validation.h"
-#include "interpreter/parser.h"
+#include "buildfile/buildfile_cmd.h"
+#include "buildfile/bfile_struct.h"
 
 #include <stdio.h>
-
-int main(int argn, char *args[]) {
-  char file_name[1024];
-  char *file_buffer;
-  ENV_VARS* evars = alloc_envvars();
-
-  printf("file to read: ");
-  /* string_validate pipeline*/
-
-  fgets(file_name, sizeof(file_name), stdin);
-  log_printf(LOG_YELLOW, " -> validating suffix...", 1);
-  validate_shf_suffix(file_name);
-  remove_nl(file_name);
-  log_printf(LOG_YELLOW, " -> initing struct of file...", 1);
-  FILE_STRUCT *file = f_init_file(file_name);
-  if (!f_file_exists(file->file_name)) {
-    f_destroy_file(&file);
-    log_printf(LOG_WHITE, "cannot open the file: ", 0);
-    printf("\"%s\" ", file_name);
-    printf("(is this exists?) \n");
-    return 1;
-  }
-  f_openr_file(file);
-  log_printf(LOG_GREEN, " -> opened ", 0);
-  printf("\"%s\" \n", file_name);
-  if(f_start_buffer(file, &file_buffer))
+int main(int argn, char *args[]) 
+{
+  char file_name[255];
+  char* buffer;
+  printf("nome do arquivo: ");
+  fgets(file_name, 255, stdin);
+  f_validate_suffix(file_name, ".json");
+  f_remove_nl(file_name);
+  if(!f_file_exists(file_name))
   {
-    log_printf(LOG_GREEN, " -> started buffer", 1);
+    printf("arquivo não existe!");
   }
-  log_printf(LOG_GREEN, " -> reading to read", 1);
-  PARSER_STRUCT* ps = ps_init_parser(file_buffer);
-  parser_pipe(ps);
+    printf("file existe!");
+    FILE_STRUCT* file_context = f_init_file(file_name);
+    f_openr_file(file_context);
+    f_start_buffer(file_context, &buffer);
+    BUILD_CMD* bcmd_context = bcmd_init();
+    bcmd_parse(bcmd_context, buffer);  
 }

@@ -1,16 +1,12 @@
-#include "buildfile/bf_cmd.h"
+#include "buildfile/buildfile_cmd.h"
 
-FILEBUILD_CMD* fbcmd_init()
+BUILD_CMD* bcmd_init()
 {
-  FILEBUILD_CMD* fb_cmd = malloc(sizeof(FILEBUILD_CMD));
+  BUILD_CMD* fb_cmd = malloc(sizeof(BUILD_CMD));
   return fb_cmd;
 }
 
-void fbcmd_destroy(FILEBUILD_CMD** fb_cmd)
+void bcmd_destroy(BUILD_CMD** bcmd)
 {
-  if(fb_cmd && *fb_cmd)
-  {
-    free(*fb_cmd);
-    *fb_cmd = NULL;
-  }
+  if(bcmd && *bcmd) free(*bcmd); *bcmd = NULL;
 }

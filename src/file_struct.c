@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "file/shfile.h"
+#include "file/file_struct.h"
 
 void _buffer_init(FILE_STRUCT* fs);
 
@@ -18,30 +18,30 @@ void f_destroy_file(FILE_STRUCT** fs)
   fs = NULL;
 }
 
-int f_file_exists(char* name)
+BOOL f_file_exists(char* name)
 {
   FILE* eph_file = fopen(name, "r");
-  if(!eph_file) return 0;
-  else return 1;
+  if(!eph_file) return FALSE;
+  else return TRUE;
 }
 
-int f_openr_file(FILE_STRUCT* file_struct)
+BOOL f_openr_file(FILE_STRUCT* file_struct)
 {
   file_struct->file_ptr = fopen(file_struct->file_name, "rb");
-  if(!file_struct->file_ptr) return -1;
-  return 1;
+  if(!file_struct->file_ptr) return GENERIC_ERR;
+  return TRUE;
 }
 
-int f_close_file(FILE_STRUCT* file_struct)
+BOOL f_close_file(FILE_STRUCT* file_struct)
 {
   if(file_struct->file_ptr){
     fclose(file_struct->file_ptr);
-    return 1;
+    return TRUE;
   }
-  return -1;
+  return GENERIC_ERR;
 }
 
-int f_start_buffer(FILE_STRUCT* fs, char** buffer)
+BOOL f_start_buffer(FILE_STRUCT* fs, char** buffer)
 {
   fseek(fs->file_ptr, 0, SEEK_END);
   
@@ -57,7 +57,7 @@ int f_start_buffer(FILE_STRUCT* fs, char** buffer)
   
   *buffer = malloc(fs->lenght + 1);
   
-  if(!*buffer) return 0;
+  if(!*buffer) return FALSE;
   strcpy(*buffer, fs->buffer);
   return 1;
 }
