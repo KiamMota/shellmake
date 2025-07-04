@@ -4,3 +4,5 @@ build/
 command_settings.json
 shmake
 shellmake
+external/cjson/build/
+external/cjson/bin/
