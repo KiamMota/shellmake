@@ -4,13 +4,17 @@ project(shmake C)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(FILEBUILD_SRC
+set
+(
+    FILEBUILD_SRC
     src/buildfile/bf_file.c
     src/buildfile/bf_cmd.c
     src/buildfile/bf_parse.c
 )
 
-set(SOURCES
+set
+(
+    SOURCES
     src/main.c
     src/shfile.c
     src/string_validation.c
@@ -25,5 +29,8 @@ set(ALL_SRC
     ${SOURCES} ${FILEBUILD_SRC}
 )
 
-add_executable(shmake ${ALL_SRC})
-target_include_directories(shmake PUBLIC include)
+include_directories
+(
+    include
+    external/cjson
+)
