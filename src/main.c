@@ -21,6 +21,7 @@ int main(int argn, char *args[])
     f_openr_file(file_context);
     f_start_buffer(file_context);
     f_get_fs_buffer(file_context, &buffer);
-    printf("buffer: %s", buffer);
     f_destroy_file(&file_context);
+    BUILD_CMD* bcmd = bcmd_init();
+    bcmd_json_parse(bcmd, buffer);
 }

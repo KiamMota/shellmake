@@ -6,6 +6,7 @@
 
 const char* json_var_string(cJSON* root, char* str_cmd);
 int json_var_bool(cJSON* root, char* str_cmd);
+char** json_var_arrstr(cJSON* root, char* str_cmd);
 
 void bcmd_json_parse(BUILD_CMD* bcmd, char* buffer)
 {
@@ -18,13 +19,12 @@ void bcmd_json_parse(BUILD_CMD* bcmd, char* buffer)
       cJSON_Delete(buffer_to_parse);
   }
 
-  // const char* result = json_var_string(buffer_to_parse, BCMD_MINIMUM_VER_REQ);
-  
-  if(json_var_bool(buffer_to_parse, BCMD_REQUIRED_ROOT))
+char** result = json_var_arrstr(buffer_to_parse, BCMD_DISTRO_ORIGINS);
+  if(result)
   {
-    printf("requer root");
-  }else printf("não requer root");
-
+    printf("valores da array: %s", *result);
+  }
+  
   cJSON_Delete(cmd);
   cJSON_Delete(buffer_to_parse);
 }
@@ -47,6 +47,23 @@ int json_var_bool(cJSON* root, char* str_cmd)
   } 
     return -1;
 }
+
+char** json_var_arrstr(cJSON* root, char* str_cmd)
+{
+  cJSON* cmd = cJSON_GetObjectItemCaseSensitive(root, str_cmd);
+  if(cJSON_IsArray(cmd))
+  {
+    cJSON* item = cmd->child;
+    while(item)
+    {
+      if(cJSON_IsString(item))
+      {
+      }
+      item = item->next;
+    }
+  }
+}
+
 
 
 
