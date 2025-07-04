@@ -6,3 +6,7 @@ shmake
 shellmake
 external/cjson/build/
 external/cjson/bin/
+*.so
+*.a
+*.o
+*.dll
