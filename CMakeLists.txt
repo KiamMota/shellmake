@@ -5,9 +5,9 @@ project(shmake C)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(FILEBUILD_SRC
-    src/buildfile/bf_file.c
-    src/buildfile/bf_cmd.c
-    src/buildfile/bf_parse.c
+    src/buildfile/buildfile_file.c
+    src/buildfile/buildfile_cmd.c
+    src/buildfile/buildfile_json_parse.c
 )
 
 set(SOURCES

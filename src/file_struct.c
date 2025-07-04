@@ -1,20 +1,21 @@
-#include <stdio.h>
-#include <string.h>
 #include "file/file_struct.h"
-
-void _buffer_init(FILE_STRUCT* fs);
+#include <string.h>
 
 FILE_STRUCT* f_init_file(char* file_name)
 {  
   FILE_STRUCT* fs= malloc(sizeof(FILE_STRUCT));
   fs->file_name = strdup(file_name);
-  fs->current_line = 0;
   return fs;
 }
 
 void f_destroy_file(FILE_STRUCT** fs)
 {
-  if(*fs) free(*fs);
+  if(fs && *fs){
+    free((*fs)->file_name);
+    free((*fs)->buffer);
+    free(*fs);
+    *fs = NULL;
+  }
   fs = NULL;
 }
 
@@ -41,24 +42,19 @@ BOOL f_close_file(FILE_STRUCT* file_struct)
   return GENERIC_ERR;
 }
 
-BOOL f_start_buffer(FILE_STRUCT* fs, char** buffer)
+BOOL f_start_buffer(FILE_STRUCT* fs)
 {
   fseek(fs->file_ptr, 0, SEEK_END);
-  
   fs->lenght = ftell(fs->file_ptr);
-  
   rewind(fs->file_ptr);
-  
   fs->buffer = malloc(fs->lenght + 1);
-  
   fread(fs->buffer, 1, fs->lenght, fs->file_ptr);
-  
   fs->buffer[fs->lenght] = '\0';
-  
-  *buffer = malloc(fs->lenght + 1);
-  
-  if(!*buffer) return FALSE;
-  strcpy(*buffer, fs->buffer);
   return 1;
 }
 
+void f_get_fs_buffer(FILE_STRUCT* fs, char** buffer)
+{
+  *buffer = malloc(fs->lenght + 1);
+  strcpy(*buffer, fs->buffer);
+}

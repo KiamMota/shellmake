@@ -25,6 +25,6 @@ typedef struct
 
 BUILD_CMD* bcmd_init();
 void bcmd_destroy(BUILD_CMD** bcmd);
-void bcmd_parse(BUILD_CMD* bcmd, char* buffer);
+void bcmd_json_parse(BUILD_CMD* bcmd, char* buffer);
 
 #endif

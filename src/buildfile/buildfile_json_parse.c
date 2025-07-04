@@ -1,4 +1,4 @@
-#include "buildfile/bfile_struct.h"
+#include "buildfile/buildfille.h"
 #include "buildfile/buildfile_cmd.h"
 #include "cJSON.h"
 
@@ -7,7 +7,7 @@
 const char* json_var_string(cJSON* root, char* str_cmd);
 int json_var_bool(cJSON* root, char* str_cmd);
 
-void bcmd_parse(BUILD_CMD* bcmd, char* buffer)
+void bcmd_json_parse(BUILD_CMD* bcmd, char* buffer)
 {
   cJSON* buffer_to_parse = cJSON_Parse(buffer);
   cJSON* cmd;
@@ -20,10 +20,6 @@ void bcmd_parse(BUILD_CMD* bcmd, char* buffer)
 
   // const char* result = json_var_string(buffer_to_parse, BCMD_MINIMUM_VER_REQ);
   
-  
-
-
-
   if(json_var_bool(buffer_to_parse, BCMD_REQUIRED_ROOT))
   {
     printf("requer root");
