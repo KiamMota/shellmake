@@ -1,8 +1,9 @@
 #include "env_var.h"
 #include "cli/io.h"
-#include "file/shfile.h"
+#include "file/file_struct.h"
 #include "file/string_validation.h"
 #include "interpreter/parser.h"
+
 #include <stdio.h>
 
 int main(int argn, char *args[]) {

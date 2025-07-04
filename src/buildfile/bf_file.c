@@ -1,6 +1,4 @@
 #include "buildfile/file_struct.h"
-#include <stdlib.h>
-#include <string.h>
 
 BUILDFILE* bf_init(char* buffer)
 {
@@ -13,6 +11,8 @@ void bf_destroy(BUILDFILE** bfile)
 {
   if(bfile && *bfile)
   {
+    free((*bfile)->buffer);
+    free((*bfile)->cmds);
     free(*bfile);
     *bfile = NULL;    
   }
