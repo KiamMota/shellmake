@@ -1,5 +1,7 @@
 #include "buildfile/buildfile_cmd.h"
 
+
+
 BUILD_CMD* bcmd_init()
 {
   BUILD_CMD* fb_cmd = malloc(sizeof(BUILD_CMD));

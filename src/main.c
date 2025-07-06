@@ -2,8 +2,8 @@
 #include "file/string_validation.h"
 #include "buildfile/buildfile_cmd.h"
 #include "buildfile/buildfille.h"
-
 #include <stdio.h>
+
 int main(int argn, char *args[]) 
 {
   char file_name[255];
@@ -22,6 +22,7 @@ int main(int argn, char *args[])
     f_start_buffer(file_context);
     f_get_fs_buffer(file_context, &buffer);
     f_destroy_file(&file_context);
-    BUILD_CMD* bcmd = bcmd_init();
+    BUILD_CMD* bcmd = bcmd_init(); 
     bcmd_json_parse(bcmd, buffer);
+
 }
