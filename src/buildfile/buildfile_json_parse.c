@@ -1,12 +1,11 @@
 #include "buildfile/buildfille.h"
 #include "buildfile/buildfile_cmd.h"
 #include "cJSON.h"
-
 #include <stdio.h>
 
-const char* json_var_string(cJSON* root, char* str_cmd);
-int json_var_bool(cJSON* root, char* str_cmd);
-char** json_var_arrstr(cJSON* root, char* str_cmd);
+const char* json_str_obj(cJSON* root, char* str_cmd);
+int json_obj_bool(cJSON* root, char* str_cmd);
+char** json_obj_arrstr(cJSON* root, char* str_cmd);
 
 void bcmd_json_parse(BUILD_CMD* bcmd, char* buffer)
 {
@@ -19,7 +18,7 @@ void bcmd_json_parse(BUILD_CMD* bcmd, char* buffer)
       cJSON_Delete(buffer_to_parse);
   }
 
-char** result = json_var_arrstr(buffer_to_parse, BCMD_DISTRO_ORIGINS);
+char** result = json_obj_arrstr(buffer_to_parse, BCMD_DISTRO_ORIGINS);
   if(result)
   {
     printf("valores da array: %s", *result);
@@ -29,7 +28,7 @@ char** result = json_var_arrstr(buffer_to_parse, BCMD_DISTRO_ORIGINS);
   cJSON_Delete(buffer_to_parse);
 }
 
-const char* json_var_string(cJSON* root, char* str_cmd)
+const char* json_str_obj(cJSON* root, char* str_cmd)
 {
   cJSON* cmd = cJSON_GetObjectItemCaseSensitive(root, str_cmd);
   if(cJSON_IsString(cmd) && cmd->valuestring != NULL)
@@ -37,7 +36,7 @@ const char* json_var_string(cJSON* root, char* str_cmd)
   return "null";
 }
 
-int json_var_bool(cJSON* root, char* str_cmd)
+int json_obj_bool(cJSON* root, char* str_cmd)
 {
   cJSON* cmd = cJSON_GetObjectItemCaseSensitive(root, str_cmd);
   if(cJSON_IsBool(cmd))
@@ -48,7 +47,7 @@ int json_var_bool(cJSON* root, char* str_cmd)
     return -1;
 }
 
-char** json_var_arrstr(cJSON* root, char* str_cmd)
+char** json_obj_arrstr(cJSON* root, char* str_cmd)
 {
   cJSON* cmd = cJSON_GetObjectItemCaseSensitive(root, str_cmd);
   if(cJSON_IsArray(cmd))
