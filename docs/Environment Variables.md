@@ -1,6 +1,6 @@
 # Shellmake Environment Variables
 
-Shellmake uses environment variables denoted by `${variable}` within its directives to enable dynamic behavior during preprocessing.
+Shellmake uses environment variables denoted by `${VAR_NAME}` within its directives to enable dynamic behavior during preprocessing.
 
 ## What Are Shellmake Variables?
 
@@ -8,7 +8,7 @@ These variables represent values available at **runtime** or set in the environm
 
 ## Usage
 
-By referencing `${variable}`, shellmake scripts become flexible, reacting to the environment dynamically without hardcoding values.
+By referencing `${VAR_NAME}`, shellmake scripts become flexible, reacting to the environment dynamically without hardcoding values.
 
 ## Environment Variables Space
 
