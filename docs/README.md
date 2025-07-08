@@ -1,27 +1,19 @@
-# Shellmake Syntax Documentation
+# ShellMake Syntax And Rules
 
-Shellmake uses special comment directives to preprocess shell scripts with conditional and line-editing commands.
+Shellmake uses **special comment directives** that called **meta-commments** to preprocess shell scripts. 
 
-## Syntax Overview
+### Any command that ShellMake have to process must start with the **ShellMake Directive** -> `# @shm`
 
-- Directives begin with the meta-command caller `@shm`.
-- If a condition is used (e.g., `if`), it ends with a colon `:` to start a block.
-- Inside a conditional block, one or more commands are specified.
-- Commands start with `>` followed by the command name, optional parameters in parentheses, and arguments in quotes.
-- Conditional blocks must be closed with `endif;` (semicolon mandatory).
-- For single commands without condition, no `endif;` is required.
-- The general base syntax for single commands is:
+## Synopsis
 
-  `meta_command_caller <command>: <command>`
+ShellMake uses a simple pattern to make any meta-command
+
+### `# <metac_caller> <command>: <parameter(s)>`
 
 ## Structural Elements
 
 - `@shm`: meta-command caller prefix.
-- `<condition> :` marks the start of a conditional block.
-- `>command(options) "arguments"` syntax for commands.
+- `<command> :` marks the command block.
+- `parameter` syntax for commands.
 - Quotes are required around arguments that contain spaces or special characters.
-- `endif;` ends conditional blocks.
 
-## Summary
-
-Shellmake syntax is designed to enable precise and conditional script editing using comment directives. Blocks and commands follow a strict pattern with explicit starts and ends, supporting robust and maintainable dynamic scripting.
