@@ -5,7 +5,7 @@
 > [!IMPORTANT]
 > ShellMake is not available as a package. To use it, you must download the source code and compile it using `cmake`.
 
- Building shmake
+Building shmake
 
 To build shmake from source:
 
@@ -14,3 +14,8 @@ git clone https://github.com/KiamMota/shmake.git
 cd shmake
 mkdir build && cd build
 cmake .. && make
+```
+You can see the documentation [here.](docs/README.md)
+
+
+
