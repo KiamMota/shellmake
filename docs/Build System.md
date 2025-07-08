@@ -1,7 +1,8 @@
 
 # Shellmake Build System
 
-Shellmake uses a json build file  to guide how a script should be preprocessed across different Linux environments.
+In shellmake, you can use build files for encapsulate portable builds.
+Acctualy, Shellmake build files are interpreted with JSON.
 
 ## Purpose
 
@@ -11,11 +12,9 @@ The build file defines:
 - Required Shellmake version
 - Script output name
 
-It separates logic from configuration and makes scripts portable and adaptable.
-
 ## How to Use
 
-In your shell script, add this directive:
+To use your Shellmake Build Commands in your script, use:
 
 ```sh
 # @shm extends: YouShellMakeBuildFile.json
