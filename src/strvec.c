@@ -12,10 +12,11 @@ strvec_t* strarr_alloc()
 
 void strarr_destroy(strvec_t** strarr)
 {
-	for(int i = 0; i<(*strarr)->line_len; i++)
-	{
-		free((*strarr)->arr[i]);
-	}
+	for(int i = 0; i<(*strarr)->line_len; i++) free((*strarr)->arr[i]);
+	
+	free(*strarr);
+	
+	*strarr = NULL;
 }
 
 void strarr_insert(strvec_t* strarr, char* cstr)
