@@ -1,5 +1,5 @@
-#include "buildfile/buildfile_cmd.h"
 #include <stdlib.h>
+#include "buildfile/buildfile_cmd.h"
 
 BUILD_CMD* bcmd_alloc()
 {
@@ -20,7 +20,6 @@ void bcmd_destroy(BUILD_CMD** bcmd)
 	strarr_destroy(&(*bcmd)->sa_distro_targets);
 	strarr_destroy(&(*bcmd)->sa_distro_exclude);
 	strarr_destroy(&(*bcmd)->sa_distro_origins);
-
 	free(*bcmd);
 	*bcmd = NULL;
   } 

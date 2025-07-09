@@ -16,7 +16,6 @@ void f_destroy_file(FILE_STRUCT** fs)
     free(*fs);
     *fs = NULL;
   }
-  fs = NULL;
 }
 
 BOOL f_file_exists(char* name)

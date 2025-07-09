@@ -17,6 +17,9 @@ set(SOURCES
     src/io.c
     src/event.c
     src/env_var.c
+
+    src/strvec.c
+
 )
 
 set(ALL_SRC

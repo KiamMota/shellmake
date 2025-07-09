@@ -1,6 +1,6 @@
 #include "stdlib.h"
 #include "shellmake.h"
-#include "str_arr.h"
+#include "strvec.h"
 
 #ifndef _BUILDFILE_CMD_H_
 #define _BUILDFILE_CMD_H_
@@ -27,10 +27,10 @@ typedef struct
   char* cmd_minimum_version_required;
   char* cmd_filename;
   BOOL cmd_required_root; 
-  str_arr_t* sa_distro_targets;
-  str_arr_t* sa_distro_origins;
-  str_arr_t* sa_distro_exclude;
-  str_arr_t* sa_shell_targets;
+  strvec_t* sa_distro_targets;
+  strvec_t* sa_distro_origins;
+  strvec_t* sa_distro_exclude;
+  strvec_t* sa_shell_targets;
 } BUILD_CMD;
 
 BUILD_CMD* bcmd_alloc();

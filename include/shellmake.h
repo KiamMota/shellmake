@@ -1,5 +1,7 @@
 // ==> this is the header that contains the all types and cross cutting of ShellMake
 
+#define DEBUG
+
 #define SHELLMAKE_VERSION "0.0.1"
 
 #define TRUE 1
