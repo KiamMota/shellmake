@@ -1,29 +1,39 @@
 #include "stdlib.h"
+#include "shellmake.h"
+#include "str_arr.h"
 
 #ifndef _BUILDFILE_CMD_H_
 #define _BUILDFILE_CMD_H_
 
+/*==================================*/ 
+
+// ==>  list of defines (commands can be changed)
+
 #define BCMD_MINIMUM_VER_REQ "minimum_version_required"
 #define BCMD_FILENAME "filename"
 #define BCMD_REQUIRED_ROOT "required_root"
-#define BCMD_DISTRO_ORIGINS "distro_origins"
-#define BCMD_DISTRO_EXCLUDE "distro_exclude"
+#define BCMD_DISTRO_ORIGINS "sa_distro_origins"
+#define BCMD_DISTRO_TARGETS "sa_distro_targets"
+#define BCMD_DISTRO_EXCLUDE "sa_distro_exclude"
 #define BCMD_SHELL_TARGETS  "shell_targets"
+
+/*==================================*/ 
+
+// ==>  build_cmd its a struct that hold the build commands
 
 typedef struct
 {
+// ==> 'sa' means 'string array'
   char* cmd_minimum_version_required;
   char* cmd_filename;
-  int cmd_required_root;
-  /* arrays */
-  char** cmd_distro_origins; long cmd_distro_origins_len;
-  char** cmd_distro_targets; long cmd_distro_targets_len;
-  char** cmd_distro_exclude; long cmd_distro_exclude_len;
-  char** cmd_shell_targets;  long cmd_shell_targets_len;
-
+  BOOL cmd_required_root; 
+  str_arr_t* sa_distro_targets;
+  str_arr_t* sa_distro_origins;
+  str_arr_t* sa_distro_exclude;
+  str_arr_t* sa_shell_targets;
 } BUILD_CMD;
 
-BUILD_CMD* bcmd_init();
+BUILD_CMD* bcmd_alloc();
 void bcmd_destroy(BUILD_CMD** bcmd);
 void bcmd_json_parse(BUILD_CMD* bcmd, char* buffer);
 
