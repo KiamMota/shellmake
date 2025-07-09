@@ -1,6 +1,7 @@
 // ==> this file represents the strvec type, a shellmake specific type to represents
 // string arrays with basic functions to alloc, destroy and insert
 // TODO: delete some specific string in the array 
+
 #include "shellmake.h"
 
 #ifdef DEBUG

@@ -1,6 +1,6 @@
 #include "file/file_struct.h"
 #include "file/string_validation.h"
-#include "buildfile/buildfile_cmd.h"
+#include "buildfile/cmd.h"
 #include "strvec.h"
 #include <stdio.h>
 

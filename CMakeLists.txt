@@ -5,9 +5,9 @@ project(shmake C)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(FILEBUILD_SRC
-    src/buildfile/buildfile_file.c
-    src/buildfile/buildfile_cmd.c
-    src/buildfile/buildfile_json_parse.c
+    src/buildfile/bfile.c
+    src/buildfile/cmd.c
+    src/buildfile/json_parse.c
 )
 
 set(SOURCES
@@ -15,7 +15,6 @@ set(SOURCES
     src/file_struct.c
     src/string_validation.c
     src/io.c
-    src/event.c
     src/env_var.c
 
     src/strvec.c

@@ -1,3 +1,5 @@
+// ==> this file represents the commands of build file
+
 #include "stdlib.h"
 #include "shellmake.h"
 #include "strvec.h"

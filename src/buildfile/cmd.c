@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "buildfile/buildfile_cmd.h"
+#include "buildfile/cmd.h"
 
 BUILD_CMD* bcmd_alloc()
 {

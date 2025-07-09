@@ -1,6 +1,4 @@
 #include "strvec.h"
-#include <stdlib.h>
-#include <string.h>
 
 strvec_t* strarr_alloc()
 {
