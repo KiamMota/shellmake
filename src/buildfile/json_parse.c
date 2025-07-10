@@ -11,7 +11,7 @@ void bcmd_json_parse(BUILD_CMD* bcmd, char* buffer)
 {
   cJSON* json_parse = cJSON_Parse(buffer);
   cJSON* cmd;
-  strvec_t* strarr = strarr_alloc();
+  strvec_t* strvec = strvec_alloc();
   if(json_parse == NULL)
   {
       const char* c_json_err = cJSON_GetErrorPtr();
@@ -23,7 +23,7 @@ void bcmd_json_parse(BUILD_CMD* bcmd, char* buffer)
 
 strvec_t* _json_obj_arrstr(cJSON* root, char* str_cmd)
 {
-		strvec_t* json_strarr = strarr_alloc();
+		strvec_t* json_strvec = strvec_alloc();
 		cJSON* cmd = cJSON_GetObjectItemCaseSensitive(root, str_cmd);
 		cJSON* element = NULL;
 		cJSON* array = NULL;

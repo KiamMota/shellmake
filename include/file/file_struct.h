@@ -1,8 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "strvec.h"
+
+#include "event_list.h"
 #include "shellmake.h"
 #include "file/string_validation.h"
+
 #ifndef _SHF_STRUCT_
 #define _SHF_STRUCT_
 

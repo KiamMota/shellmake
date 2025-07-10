@@ -4,10 +4,6 @@
 
 #include "shellmake.h"
 
-#ifdef DEBUG
-#include <stdio.h>
-#endif
-
 #include "stdlib.h"
 #include <string.h>
 
@@ -15,12 +11,12 @@
 #define _STRVEC_H_
 
 typedef struct{
-	char** arr;
-	long line_len;
+	char** _arr;
+	long _line_len;
 } strvec_t;
 
-strvec_t* strarr_alloc();
-void strarr_destroy(strvec_t** strarr);
-void strarr_insert(strvec_t* strarr, char* cstr);
-
+strvec_t* strvec_alloc();
+void strvec_destroy(strvec_t** strarr);
+void strvec_insert(strvec_t* strarr, char* cstr);
+long strvec_get_lines(strvec_t* strvec);
 #endif

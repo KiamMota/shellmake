@@ -1,27 +1,32 @@
 #include "strvec.h"
 
-strvec_t* strarr_alloc()
+strvec_t* strvec_alloc()
 {
 	strvec_t* strarr_st = malloc(sizeof(strvec_t));
-	strarr_st->arr = malloc(sizeof(char));
-	strarr_st->line_len = 0;	
+	strarr_st->_arr = malloc(sizeof(char));
+	strarr_st->_line_len = 0;	
 	return strarr_st;
 }
 
-void strarr_destroy(strvec_t** strarr)
+void strvec_destroy(strvec_t** strarr)
 {
-	for(int i = 0; i<(*strarr)->line_len; i++) free((*strarr)->arr[i]);
+	for(int i = 0; i<(*strarr)->_line_len; i++) free((*strarr)->_arr[i]);
 	
 	free(*strarr);
 	
 	*strarr = NULL;
 }
 
-void strarr_insert(strvec_t* strarr, char* cstr)
+void strvec_insert(strvec_t* strarr, char* cstr)
 {
-	strarr->arr = realloc(strarr->arr, (strarr->line_len + 1) * sizeof(char*));
-	strarr->arr[strarr->line_len] = malloc(strlen(cstr) + 1);
-	strcpy(strarr->arr[strarr->line_len], cstr);
-	strarr->line_len ++;
+	strarr->_arr = realloc(strarr->_arr, (strarr->_line_len + 1) * sizeof(char*));
+	strarr->_arr[strarr->_line_len] = malloc(strlen(cstr) + 1);
+	strcpy(strarr->_arr[strarr->_line_len], cstr);
+	strarr->_line_len ++;
 
+}
+
+long strvec_get_lines(strvec_t *strvec)
+{
+return strvec->_line_len;
 }
