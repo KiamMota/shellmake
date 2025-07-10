@@ -28,8 +28,5 @@ void bf_init_parsing(BUILDFILE *bfile)
 		}
 		f_openr_file(bfile->bfile);
 		f_start_buffer(bfile->bfile);
-		if(strcmp(bfile->bfile->file_name, ".json"))
-		{
-				bcmd_json_parse(bfile->bcmd, bfile->bfile->buffer);				
-		}
+		bcmd_json_parse(bfile->bcmd, bfile->bfile->buffer);				
 }
