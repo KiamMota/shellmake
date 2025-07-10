@@ -12,7 +12,6 @@ int main(int argn, char *args[])
 		fgets(filename, sizeof(filename), stdin);
 		BUILDFILE* file = bf_init(filename);
 		bf_init_parsing(file);		
-		evlist_show_events(GLOBAL_EVLIST);
 
 }
 

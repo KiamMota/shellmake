@@ -1,0 +1,7 @@
+{
+"file_name": "myscripts"
+"required_root": false,
+"distro_targets": ["debian", "arch", "ubuntu"],
+"distro_exclude": ["kali", "xubuntu"],
+"shell_targets": ["bash", "zshell"]
+}

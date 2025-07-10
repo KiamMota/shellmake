@@ -1,8 +1,0 @@
-{
-  "minimum_version_required": "0.0.1",
-  "filename": "arbusto02",
-  "distro_origins": ["linuxmint"],
-  "distro_targets": ["arch", "kali"],
-  "distro_exclude": ["xubuntu"],
-  "required_root": false
-}

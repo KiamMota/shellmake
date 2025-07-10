@@ -11,13 +11,6 @@ event_list* evlist_alloc(void)
 
 }
 
-void evlist_add(event_list* elist, EVENTS ev)
-{
-     elist->events = realloc(elist->events, (elist->list_lenght + 1) * sizeof(long));
-	 elist->events[elist->list_lenght] = ev;
-     elist->list_lenght++;
-}
-
 void evlist_log(event_list *evlist, char *message)
 {
 		strvec_insert(evlist->log_vec, message);
@@ -33,9 +26,3 @@ void evlist_show_all_log(event_list *evlist)
 				}
 }
 
-void evlist_show_events(event_list *evlist)
-{
-for(long i=0; i<evlist->list_lenght; i++)		
-printf("-> %d\n", evlist->events[i]);
-
-}
