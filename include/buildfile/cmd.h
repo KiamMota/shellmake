@@ -29,10 +29,10 @@ typedef struct
   char* cmd_minimum_version_required;
   char* cmd_filename;
   BOOL cmd_required_root; 
-  strvec_t* sa_distro_targets;
-  strvec_t* sa_distro_origins;
-  strvec_t* sa_distro_exclude;
-  strvec_t* sa_shell_targets;
+  strvec_t* sa_cmd_distro_targets;
+  strvec_t* sa_cmd_distro_origins;
+  strvec_t* sa_cmd_distro_exclude;
+  strvec_t* sa_cmd_shell_targets;
 } BUILD_CMD;
 
 BUILD_CMD* bcmd_alloc();

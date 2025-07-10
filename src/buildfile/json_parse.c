@@ -26,9 +26,10 @@ void bcmd_json_parse(BUILD_CMD* bcmd, char* buffer)
 				printf("json parse error: %s", c_json_err);
 				cJSON_Delete(json_parse);
 		}
-		bcmd->cmd_filename = _json_str_obj(json_parse, "file_name");
-		bcmd->sa_distro_exclude = _json_obj_arrstr(json_parse, "distro_exclude");
 
+		bcmd->sa_cmd_distro_exclude = _json_obj_arrstr(json_parse, BCMD_DISTRO_EXCLUDE);
+		bcmd->cmd_required_root = _json_obj_bool(json_parse, BCMD_REQUIRED_ROOT);
+		bcmd->cmd_minimum_version_required = _json_str_obj(json_parse, "a");
 }
 /*==================================*/ 
 /*==================================*/
@@ -43,19 +44,19 @@ BOOL _json_obj_bool(cJSON* root, char* str_cmd)
 				evlist_log(GLOBAL_EVLIST, "CJSON PARSING ERR -> [is not an bool]");
 				return GENERIC_ERR;
 		}
-		return (cJSON_IsTrue(cmd)) ? TRUE : FALSE;
+		return (cJSON_IsTrue(cmd) ? TRUE : FALSE);
 }
 
 char* _json_str_obj(cJSON* root, char* str_cmd)
 {
 		cJSON* cmd = cJSON_GetObjectItemCaseSensitive(root, str_cmd); 		
-		if(!cJSON_IsString(cmd) && !cmd->valuestring)
+		char* to_return;
+		if(cJSON_IsInvalid(cmd) || !cJSON_IsString(cmd))
 		{
 				cJSON_Delete(cmd);
-				evlist_log(GLOBAL_EVLIST, "JSON PARSING ERR -> [invalid command]");
+				evlist_log(GLOBAL_EVLIST, "JSON PARSING ERR -> [invalid string]");
 				return "invalid";
 		}
-		printf("valor-> %s", cmd->valuestring);
 		return cmd->valuestring;
 }
 
