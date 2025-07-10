@@ -9,34 +9,31 @@ strvec_t* _json_obj_arrstr(cJSON* root, char* str_cmd);
 
 void bcmd_json_parse(BUILD_CMD* bcmd, char* buffer)
 {
-  cJSON* buffer_to_parse = cJSON_Parse(buffer);
+  cJSON* json_parse = cJSON_Parse(buffer);
   cJSON* cmd;
-  if(buffer_to_parse == NULL)
+  strvec_t* strarr = strarr_alloc();
+  if(json_parse == NULL)
   {
       const char* c_json_err = cJSON_GetErrorPtr();
-      printf("c_json parse error: %s", c_json_err);
-      cJSON_Delete(buffer_to_parse);
+      printf("json parse error: %s", c_json_err);
+      cJSON_Delete(json_parse);
   }
+
 }
 
-
-const char* _json_str_obj(cJSON* root, char* str_cmd)
+strvec_t* _json_obj_arrstr(cJSON* root, char* str_cmd)
 {
-  cJSON* cmd = cJSON_GetObjectItemCaseSensitive(root, str_cmd);
-  if(cJSON_IsString(cmd) && cmd->valuestring != NULL)
-    return cmd->valuestring;
-  return "null";
+		strvec_t* json_strarr = strarr_alloc();
+		cJSON* cmd = cJSON_GetObjectItemCaseSensitive(root, str_cmd);
+		cJSON* element = NULL;
+		cJSON* array = NULL;
+
+		if(!cJSON_IsArray(cmd) && cJSON_IsNull(cmd))
+		{	
+				cJSON_Delete(cmd);
+				return NULL;
+		}
+		
+		int arr_size = cJSON_GetArraySize(cmd);
+		printf("array size: %d", arr_size);
 }
-
-int _json_obj_bool(cJSON* root, char* str_cmd)
-{
-  cJSON* cmd = cJSON_GetObjectItemCaseSensitive(root, str_cmd);
-  if(cJSON_IsBool(cmd))
-  {
-    if(cJSON_IsTrue(cmd))  return 1;
-    if(cJSON_IsFalse(cmd)) return 0;
-  } 
-    return -1;
-}
-
-

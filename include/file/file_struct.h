@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "shellmake.h"
-
+#include "file/string_validation.h"
 #ifndef _SHF_STRUCT_
 #define _SHF_STRUCT_
 
@@ -20,6 +20,6 @@ BOOL          f_file_exists(char* name);
 BOOL          f_start_buffer(FILE_STRUCT* fs);
 BOOL          f_openr_file(FILE_STRUCT* fs);
 BOOL          f_close_file(FILE_STRUCT* fs);
-void          f_get_fs_buffer(FILE_STRUCT* fs, char** buffer);
+char*         f_get_fs_buffer(FILE_STRUCT* fs);
 
 #endif

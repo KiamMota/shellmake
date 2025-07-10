@@ -1,9 +1,9 @@
 #include "file/file_struct.h"
-#include <string.h>
 
 FILE_STRUCT* f_init_file(char* file_name)
 {  
   FILE_STRUCT* fs= malloc(sizeof(FILE_STRUCT));
+  f_remove_nl(file_name);
   fs->file_name = strdup(file_name);
   return fs;
 }
@@ -52,8 +52,7 @@ BOOL f_start_buffer(FILE_STRUCT* fs)
   return 1;
 }
 
-void f_get_fs_buffer(FILE_STRUCT* fs, char** buffer)
+char* f_get_fs_buffer(FILE_STRUCT* fs)
 {
-  *buffer = malloc(fs->lenght + 1);
-  strcpy(*buffer, fs->buffer);
+		return fs->buffer;
 }
