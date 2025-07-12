@@ -6,6 +6,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
+set(PIPE
+		src/pipe/init_argv.c
+)
+
 set(FILEBUILD_SRC
     src/buildfile/bfile.c
     src/buildfile/cmd.c
@@ -24,7 +28,10 @@ set(SOURCES
 
 set(ALL_SRC
     ${SOURCES} ${FILEBUILD_SRC}
+		${PIPE}
 )
+
+
 
 add_executable(shmake ${ALL_SRC})
 add_subdirectory(external/cjson)
