@@ -30,3 +30,17 @@ long strvec_get_lines(strvec_t *strvec)
 {
 return strvec->_line_len;
 }
+
+void strvec_printall(strvec_t *strvec)
+{
+		if(strvec->_line_len <=0) 
+		{
+		printf(" | empty list... |\n");
+		return;
+		}
+				printf(" | line lenght: %ld\n", strvec->_line_len);
+				printf(" |-----------------\n");
+		for(long i=0; i<strvec->_line_len; i++) printf(" | [%ld] -> [%s]\n", i, strvec->_arr[i]);
+		printf(" |-----------------\n");
+		
+}
