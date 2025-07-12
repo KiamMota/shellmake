@@ -1,8 +1,6 @@
 # Shellmake Environment Variables
 
-Shellmake uses environment variables denoted by `${VAR_NAME}` within its directives to enable dynamic behavior during preprocessing.
-
-## What Are Shellmake Variables?
+Shellmake uses environment variables denoted by `${VAR_NAME}` within its directives to enable dynamic behavior during creation of the AST.
 
 These variables represent values available at **runtime** or set in the environment where shellmake runs. They allow conditions and commands to adapt based on the current context, such as the target system, user settings, or other external parameters.
 
@@ -12,11 +10,14 @@ By referencing `${VAR_NAME}`, shellmake scripts become flexible, reacting to the
 
 ## Environment Variables Space
 
+> [!IMPORTANT]  
+> All returns of Env Vars are **snake_case strings**.
+
 `DISTRO`      -> returns a lowercase string with the name of the Linux distribution or operating system
 
 `USER_NAME`   -> returns the current user's username as a string
 
-`SUPER_USER`  -> returns "true" if the user has root or sudo privileges, otherwise "false"
+`SUPER_USER`  -> returns "true" if the user has **root or sudo** privileges, otherwise "false"
 
 `HOSTNAME`    -> returns the system's hostname as a string
 
