@@ -6,7 +6,7 @@
 
 #include "stdlib.h"
 #include <string.h>
-
+#include <stdio.h>
 #ifndef _STRVEC_H_
 #define _STRVEC_H_
 
@@ -19,4 +19,5 @@ strvec_t* strvec_alloc();
 void strvec_destroy(strvec_t** strarr);
 void strvec_insert(strvec_t* strarr, char* cstr);
 long strvec_get_lines(strvec_t* strvec);
+void strvec_printall(strvec_t* strvec);
 #endif
