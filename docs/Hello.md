@@ -17,3 +17,5 @@ ShellMake uses a simple pattern to make any meta-command
 - `parameter` syntax for commands.
 - Quotes are required around arguments that contain spaces or special characters.
 
+> [!IMPORTANT]  
+> The default case in ShellMake is snake_case, that's worth to all preprocessing logic.
