@@ -7,10 +7,6 @@
 
 void init_argv(int argn, char** argv);
 
-
-
-
-
 #endif
 
 
