@@ -38,22 +38,26 @@ void _version()
 
 strvec_t* _get_invalid_files(strvec_t* filelist)
 {
-		strvec_t* invalid_files = strvec_alloc();
-		int valid_files = 0;
+		strvec_t* sh_invalids = strvec_alloc();
 		for(short i =0; i<strvec_get_lines(filelist); i++)
 		{
 				if(!f_file_exists(filelist->_arr[i])) 
-						strvec_insert(invalid_files, filelist->_arr[i]);	
+						strvec_insert(sh_invalids, filelist->_arr[i]);	
 		}
-		return invalid_files;
+		return sh_invalids;
 }
 
 void init_argv(int argn, char** argv)
 {
-		if(argn <=1 ){_menu_help(); return;}
-		strvec_t* invalid_files = strvec_alloc();
+		if(argn <=1 )
+		{
+				_menu_help(); return;
+		}
 
-		strvec_t* eph_filelist    = strvec_alloc();
+		strvec_t* sh_invalids = strvec_alloc();
+		strvec_t* bfile_invalids = strvec_alloc();
+
+		strvec_t* filelist    = strvec_alloc();
 		strvec_t* eph_buildflist  = strvec_alloc();
 
 
@@ -68,31 +72,56 @@ void init_argv(int argn, char** argv)
 				return;
 		}
 
+// ==> inserting in string vectors
+
 		for(int i =1; i<argn; i++)
-		{
-				
+		{	
 				if(strstr(argv[i], ".sh"))
-						strvec_insert(eph_filelist, argv[i]);
+						strvec_insert(filelist, argv[i]);
 				if(strstr(argv[i], ".json"))
 						strvec_insert(eph_buildflist, argv[i]);
 		}
+	    
+		printf("validating parameters...");
 
-		invalid_files = _get_invalid_files(eph_filelist);
-		printf("validating files...");
-		if(strvec_get_lines(invalid_files))
+		if(strvec_get_lines(filelist) == 0)
 		{
 				printf("	fail.\n");
-				printf("\n");
-				for(short i=0; i<strvec_get_lines(invalid_files); i++)
-						printf("| '%s' \n", invalid_files->_arr[i]);
-			    printf("-> file(s) not found.\n");	
-				printf("--- ABORTED. ---\n ");
+				printf("shell files are required! \n");	
 				return;
-		} 
-		
-		printf("	done.\n");
+		}
 
-		FILE_STRUCT** file_context[strvec_get_lines(eph_filelist)];
+		printf("done.\n");
+
+// ==> inserting in invalid files list
+
+		sh_invalids			= _get_invalid_files(filelist);
+		bfile_invalids	= _get_invalid_files(eph_buildflist);
+
+		long total_invalids = strvec_get_lines(sh_invalids) + strvec_get_lines(bfile_invalids);
+
+		printf("validating files...");
+
+		if(total_invalids)
+		{
+				printf("	fail.\n");
+				for(short i=0; i<strvec_get_lines(sh_invalids); i++)
+						printf("| '%s' \n", sh_invalids->_arr[i]);
+				
+				if(strvec_get_lines(bfile_invalids))
+				{	
+						for(int j=0; j<strvec_get_lines(bfile_invalids); j++)
+								printf("| '%s' \n", bfile_invalids->_arr[j]);
+				}
+						
+						printf("-> %ld file(s) not found.\n", total_invalids);	
+						printf("--- ABORTED ---\n ");
+						return;
+		}
+		
+		printf("done.\n");
+		
+		FILE_STRUCT** file_context[strvec_get_lines(filelist)];
 		
 }
 
