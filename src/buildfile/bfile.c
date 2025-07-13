@@ -16,7 +16,6 @@ if(!bfile && !*bfile) return;
 		bcmd_destroy(&(*bfile)->bcmd);
 		free(*bfile);
 		*bfile = NULL;
-
 }
 
 void bf_init_parsing(BUILDFILE *bfile)

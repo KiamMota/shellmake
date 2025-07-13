@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "strvec.h"
+#include "shared/strvec.h"
 #ifndef _GLOBAL_ELIST_H_
 #define _GLOBAL_ELIST_H_
 

@@ -1,5 +1,5 @@
-#include "strvec.h"
-#include "file/file_struct.h"
+#include "shared/strvec.h"
+#include "shared/file/file_struct.h"
 #include <stdio.h>
 
 #ifndef _INIT_ARGV_H_

@@ -6,8 +6,13 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
+set(SHARED
+		src/shared/strvec.c
+		src/shared/file/file_struct.c
+		src/shared/file/string_validation.c
+)
 set(PIPE
-		src/pipe/init_argv.c
+		src/pipeline/init_argv.c
 )
 
 set(FILEBUILD_SRC
@@ -18,17 +23,14 @@ set(FILEBUILD_SRC
 
 set(SOURCES
     src/main.c
-    src/file_struct.c
-    src/string_validation.c
     src/env_var.c
     src/event_list.c
-    src/strvec.c
 
 )
 
 set(ALL_SRC
     ${SOURCES} ${FILEBUILD_SRC}
-		${PIPE}
+	${PIPE} ${SHARED}
 )
 
 

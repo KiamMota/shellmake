@@ -1,8 +1,8 @@
 // ==> this file represents the build file and the build commands
 
 #include "buildfile/cmd.h"
-#include "file/file_struct.h"
-#include "file/string_validation.h"
+#include "shared/file/file_struct.h"
+#include "shared/file/string_validation.h"
 #include "stdlib.h"
 #include <string.h>
 

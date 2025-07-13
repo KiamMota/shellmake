@@ -1,4 +1,4 @@
-#include "file/file_struct.h"
+#include "shared/file/file_struct.h"
 #include "event_list.h"
 
 FILE_STRUCT* f_init_file(char* file_name)

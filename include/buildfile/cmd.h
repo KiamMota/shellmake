@@ -1,8 +1,8 @@
 // ==> this file represents the commands of build file
 
 #include "stdlib.h"
-#include "shellmake.h"
-#include "strvec.h"
+#include "shared/shellmake.h"
+#include "shared/strvec.h"
 
 #ifndef _BUILDFILE_CMD_H_
 #define _BUILDFILE_CMD_H_

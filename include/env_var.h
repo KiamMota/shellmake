@@ -1,5 +1,5 @@
 #include "stdlib.h"
-#include "shellmake.h"
+#include "shared/shellmake.h"
 
 #ifndef _ENV_VARHS_H_
 #define _ENV_VARHS_H_

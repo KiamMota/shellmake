@@ -2,7 +2,7 @@
 // they are not in h file
 
 #include "buildfile/bfile.h"
-#include "strvec.h"
+#include "shared/strvec.h"
 #include "cJSON.h"
 #include "event_list.h"
 #include <stdio.h>

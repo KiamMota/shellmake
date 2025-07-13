@@ -1,13 +1,15 @@
-#include "pipe/init_argv.h"
+#include "pipeline/init_argv.h"
 #include <string.h>
 
 // ==> this function gets the filelist getted by the argv and returns a strvec_t and
 // existing files
 
 
-#define MENU \
+#define HELP_MENU \
 "\
-\033[0;32mWelcome to ShellMake\033[0m\n\
+\
+use -help to see this menu again. \n\
+\
 Usage:\n\
   insert your scripts as parameters\n\
   -> shellmake script.sh [script2.sh ...] [Build.json ...]\n\
@@ -27,7 +29,12 @@ Examples:\n\
 |     (First .sh gets first .json, second .sh gets second .json, etc.)\n\
 |================================================================\n"
 
-void _menu_help() {printf(MENU);}
+void _menu_help() {printf(HELP_MENU);}
+void _version()
+{
+		printf("ShellMake version %s (%s)\n", SHELLMAKE_VERSION, SHELLMAKE_STATE);
+		printf("---------\n");
+}
 
 strvec_t* _get_invalid_files(strvec_t* filelist)
 {
@@ -49,20 +56,21 @@ void init_argv(int argn, char** argv)
 		strvec_t* eph_filelist    = strvec_alloc();
 		strvec_t* eph_buildflist  = strvec_alloc();
 
+
+		if(strcmp(argv[1], "-help") == 0)
+		{
+				_menu_help(); 
+				return;
+		}
+		if(strcmp(argv[1], "-version") == 0 || strcmp(argv[1], "-v") == 0)
+		{
+				_version();
+				return;
+		}
+
 		for(int i =1; i<argn; i++)
 		{
-				if(strstr(argv[i], "-help"))
-				{
-						_menu_help();
-						return;
-				}
 				
-				if(strstr(argv[i], "-version"))
-				{
-						printf("Shellmake %s (%s) \n", SHELLMAKE_VERSION, SHELLMAKE_STATE);
-						return;
-				}
-
 				if(strstr(argv[i], ".sh"))
 						strvec_insert(eph_filelist, argv[i]);
 				if(strstr(argv[i], ".json"))
@@ -80,9 +88,16 @@ void init_argv(int argn, char** argv)
 			    printf("-> file(s) not found.\n");	
 				printf("--- ABORTED. ---\n ");
 				return;
-		}else 
+		} 
+
+		FILE_STRUCT* file_context[strvec_get_lines(eph_filelist)];
+		for(short i=0; i<strvec_get_lines(eph_filelist); i++)
 		{
-				printf("	succses.\n");
+				printf("opening '%s'...", eph_filelist->_arr[i]);
+				file_context[i] = f_init_file(eph_filelist->_arr[i]);	
+				printf("		done.\n");
 		}
+
+
 }
 
