@@ -89,15 +89,10 @@ void init_argv(int argn, char** argv)
 				printf("--- ABORTED. ---\n ");
 				return;
 		} 
+		
+		printf("	done.\n");
 
-		FILE_STRUCT* file_context[strvec_get_lines(eph_filelist)];
-		for(short i=0; i<strvec_get_lines(eph_filelist); i++)
-		{
-				printf("opening '%s'...", eph_filelist->_arr[i]);
-				file_context[i] = f_init_file(eph_filelist->_arr[i]);	
-				printf("		done.\n");
-		}
-
-
+		FILE_STRUCT** file_context[strvec_get_lines(eph_filelist)];
+		
 }
 
