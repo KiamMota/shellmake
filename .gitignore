@@ -10,3 +10,4 @@ external/cjson/bin/
 *.a
 *.o
 *.dll
+CMakeLists/
