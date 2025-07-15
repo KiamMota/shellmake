@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(shmake C)
+project(shellmake C)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_C_STANDARD 11)
@@ -35,8 +35,8 @@ set(ALL_SRC
 
 
 
-add_executable(shmake ${ALL_SRC})
+add_executable(shellmake ${ALL_SRC})
 add_subdirectory(external/cjson)
-target_link_libraries(shmake PRIVATE cjson)
+target_link_libraries(shellmake PRIVATE cjson)
 
 include_directories(include external/cjson)

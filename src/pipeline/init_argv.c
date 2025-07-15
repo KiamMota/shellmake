@@ -54,6 +54,7 @@ void init_argv(int argn, char** argv)
 				_menu_help(); return;
 		}
 
+		strvec_t* param_invalids = strvec_alloc();
 		strvec_t* sh_invalids = strvec_alloc();
 		strvec_t* bfile_invalids = strvec_alloc();
 
@@ -80,15 +81,19 @@ void init_argv(int argn, char** argv)
 						strvec_insert(filelist, argv[i]);
 				if(strstr(argv[i], ".json"))
 						strvec_insert(eph_buildflist, argv[i]);
+				if(!strstr(argv[i], ".json") && !strstr(argv[i], ".sh"))
+						strvec_insert(param_invalids, argv[i]);
 		}
 	    
 		printf("validating parameters...");
+		strvec_printall(param_invalids);
 
-		if(strvec_get_lines(filelist) == 0)
+		if(strvec_get_lines(param_invalids))
 		{
 				printf("	fail.\n");
-				printf("shell files are required! \n");	
-				return;
+				for(short i = 0; i<strvec_get_lines(param_invalids); i++)
+						printf("| '%s'\n", param_invalids->_arr[i]);	
+				printf("incorrectly written or invalid files.\n");
 		}
 
 		printf("done.\n");
@@ -101,6 +106,14 @@ void init_argv(int argn, char** argv)
 		long total_invalids = strvec_get_lines(sh_invalids) + strvec_get_lines(bfile_invalids);
 
 		printf("validating files...");
+		
+		if(strvec_get_lines(filelist) == 0)
+		{
+				printf("	fail.\n");
+				printf("shell files are required! \n");
+
+				return;
+		}
 
 		if(total_invalids)
 		{
@@ -120,8 +133,5 @@ void init_argv(int argn, char** argv)
 		}
 		
 		printf("done.\n");
-		
-		FILE_STRUCT** file_context[strvec_get_lines(filelist)];
-		
 }
 
