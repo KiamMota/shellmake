@@ -11,7 +11,7 @@ set(SHARED
 		src/shared/file/file_struct.c
 		src/shared/file/string_validation.c
 )
-set(PIPE
+set(PIPELINE
 		src/pipeline/init_argv.c
 )
 
@@ -30,7 +30,7 @@ set(SOURCES
 
 set(ALL_SRC
     ${SOURCES} ${FILEBUILD_SRC}
-	${PIPE} ${SHARED}
+	${PIPELINE} ${SHARED}
 )
 
 

@@ -86,7 +86,6 @@ void init_argv(int argn, char** argv)
 		}
 	    
 		printf("validating parameters...");
-		strvec_printall(param_invalids);
 
 		if(strvec_get_lines(param_invalids))
 		{
@@ -130,8 +129,13 @@ void init_argv(int argn, char** argv)
 						printf("-> %ld file(s) not found.\n", total_invalids);	
 						printf("--- ABORTED ---\n ");
 						return;
-		}
+		}	
 		
+		strvec_destroy(&param_invalids);
+		strvec_destroy(&sh_invalids);
+		strvec_destroy(&bfile_invalids);
+
+
 		printf("done.\n");
 }
 
