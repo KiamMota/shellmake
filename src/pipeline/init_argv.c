@@ -36,15 +36,29 @@ void _version()
 		printf("---------\n");
 }
 
-strvec_t* _get_invalid_files(strvec_t* filelist)
+void _get_invalid_files(strvec_t* filelist, strvec_t* to_invalid)
 {
-		strvec_t* sh_invalids = strvec_alloc();
 		for(short i =0; i<strvec_get_lines(filelist); i++)
 		{
 				if(!f_file_exists(filelist->_arr[i])) 
-						strvec_insert(sh_invalids, filelist->_arr[i]);	
+						strvec_insert(to_invalid, filelist->_arr[i]);	
 		}
-		return sh_invalids;
+}
+
+void _show_invalid_files(strvec_t* strv_invalids) 
+{
+		int invalid_lines = strvec_get_lines(strv_invalids);
+		if(invalid_lines)
+		{
+				printf("	fail.\n");
+				for(short i=0; i<invalid_lines; i++)
+				{
+						printf("| '%s'\n", strv_invalids->_arr[i]);
+				}
+				printf("invalid or incorrectly written parameters.\n");
+				return;
+		}
+		printf("	done.\n");
 }
 
 void init_argv(int argn, char** argv)
@@ -54,12 +68,10 @@ void init_argv(int argn, char** argv)
 				_menu_help(); return;
 		}
 
-		strvec_t* param_invalids = strvec_alloc();
-		strvec_t* sh_invalids = strvec_alloc();
-		strvec_t* bfile_invalids = strvec_alloc();
+		strvec_t* invalid_files = strvec_alloc(); 
 
 		strvec_t* filelist    = strvec_alloc();
-		strvec_t* eph_buildflist  = strvec_alloc();
+		strvec_t* bfilelist  = strvec_alloc();
 
 
 		if(strcmp(argv[1], "-help") == 0)
@@ -80,62 +92,16 @@ void init_argv(int argn, char** argv)
 				if(strstr(argv[i], ".sh"))
 						strvec_insert(filelist, argv[i]);
 				if(strstr(argv[i], ".json"))
-						strvec_insert(eph_buildflist, argv[i]);
+						strvec_insert(bfilelist, argv[i]);
 				if(!strstr(argv[i], ".json") && !strstr(argv[i], ".sh"))
-						strvec_insert(param_invalids, argv[i]);
+						strvec_insert(invalid_files, argv[i]);
 		}
 	    
+		_get_invalid_files(filelist, invalid_files);
+		_get_invalid_files(bfilelist, invalid_files);
 		printf("validating parameters...");
-
-		if(strvec_get_lines(param_invalids))
-		{
-				printf("	fail.\n");
-				for(short i = 0; i<strvec_get_lines(param_invalids); i++)
-						printf("| '%s'\n", param_invalids->_arr[i]);	
-				printf("incorrectly written or invalid files.\n");
-		}
-
-		printf("done.\n");
-
-// ==> inserting in invalid files list
-
-		sh_invalids			= _get_invalid_files(filelist);
-		bfile_invalids	= _get_invalid_files(eph_buildflist);
-
-		long total_invalids = strvec_get_lines(sh_invalids) + strvec_get_lines(bfile_invalids);
-
-		printf("validating files...");
-		
-		if(strvec_get_lines(filelist) == 0)
-		{
-				printf("	fail.\n");
-				printf("shell files are required! \n");
-
-				return;
-		}
-
-		if(total_invalids)
-		{
-				printf("	fail.\n");
-				for(short i=0; i<strvec_get_lines(sh_invalids); i++)
-						printf("| '%s' \n", sh_invalids->_arr[i]);
-				
-				if(strvec_get_lines(bfile_invalids))
-				{	
-						for(int j=0; j<strvec_get_lines(bfile_invalids); j++)
-								printf("| '%s' \n", bfile_invalids->_arr[j]);
-				}
-						
-						printf("-> %ld file(s) not found.\n", total_invalids);	
-						printf("--- ABORTED ---\n ");
-						return;
-		}	
-		
-		strvec_destroy(&param_invalids);
-		strvec_destroy(&sh_invalids);
-		strvec_destroy(&bfile_invalids);
-
-
-		printf("done.\n");
+		_show_invalid_files(invalid_files);
+	
+		strvec_destroy(&invalid_files);
 }
 
