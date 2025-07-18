@@ -1,0 +1,41 @@
+
+// context
+
+shm command: param
+
+esh
+
+command:
+		if(): param
+		>function(): param
+
+// exp
+
+# shm >write(): "i like fruits" 
+
+# eshm
+
+["#":	"comment_flag"]
+["shm": "metac_flag"]
+[">":	"mrth"]
+["write": "symbol"]
+["(": 	"oparen"]
+[")":	"cparen"]
+[":":	"colon"]
+[" " ": "double_quote"]
+["i like fruits": "literal_string"]
+[" " ": "double_quote"]
+[" eshm ": "metac_endflag"]
+
+COMMENT_FLAG, METAC_FLAG, MRTH, SYMBOL, OPAREN, CPAREN, COLON, DOUBLE_QUOTE, LITERAL_STRING, DOUBLE_QUOTE, METAC_ENDFLAG
+
+
+shm if(${DISTRO} == "arch"):
+shm if(>have_occ("sudo apt install")):
+shm >replace_to("sudo pacman -S")
+shm >write_c("changing to arch")
+shm endif
+shm endif
+
+
+

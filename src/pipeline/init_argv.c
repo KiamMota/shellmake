@@ -36,13 +36,14 @@ void _version()
 		printf("---------\n");
 }
 
-void _get_invalid_files(strvec_t* filelist, strvec_t* to_invalid)
+int _get_invalid_files(strvec_t* filelist, strvec_t* to_invalid)
 {
 		for(short i =0; i<strvec_get_lines(filelist); i++)
 		{
 				if(!f_file_exists(filelist->_arr[i])) 
 						strvec_insert(to_invalid, filelist->_arr[i]);	
 		}
+		return strvec_get_lines(to_invalid);
 }
 
 void _show_invalid_files(strvec_t* strv_invalids) 
@@ -96,12 +97,24 @@ void init_argv(int argn, char** argv)
 				if(!strstr(argv[i], ".json") && !strstr(argv[i], ".sh"))
 						strvec_insert(invalid_files, argv[i]);
 		}
-	    
-		_get_invalid_files(filelist, invalid_files);
-		_get_invalid_files(bfilelist, invalid_files);
+	   
+		short total_invalid = 0;
+
+		total_invalid = _get_invalid_files(filelist, invalid_files);
+		total_invalid = _get_invalid_files(bfilelist, invalid_files);
+		
 		printf("validating parameters...");
-		_show_invalid_files(invalid_files);
-	
-		strvec_destroy(&invalid_files);
+		
+		if(total_invalid)
+		{
+				_show_invalid_files(invalid_files);
+				strvec_destroy(&invalid_files);
+				strvec_destroy(&filelist);
+				strvec_destroy(&bfilelist);
+				return;
+		}
+
+		printf("	done.\n");
+
 }
 

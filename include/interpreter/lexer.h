@@ -6,20 +6,18 @@
 
 typedef enum
 {
+		METAC_FLAG, 
+		MRTH, 
 		SYMBOL,
-		OPERATOR,
+		OPAREN, 
+		CPAREN, 
+		COLON, 
+		DOUBLE_QUOTE, 
+		LITERAL_STRING, 
+		METAC_ENDFLAG,
 } TOKENS;
 
-typedef struct
-{
-		long line;
-		long column;
-		char* symbol;
-		TOKENS* tok;
-} LEXER;
-
-LEXER* lx_alloc(void);
-void   lx_lexing(LEXER* lx, char* buffer);
+void test_init_lexing(char* buffer);
 
 #endif
 
