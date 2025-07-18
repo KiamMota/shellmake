@@ -98,14 +98,13 @@ void init_argv(int argn, char** argv)
 						strvec_insert(invalid_files, argv[i]);
 		}
 	   
-		short total_invalid = 0;
 
-		total_invalid = _get_invalid_files(filelist, invalid_files);
-		total_invalid = _get_invalid_files(bfilelist, invalid_files);
+		_get_invalid_files(filelist, invalid_files);
+		_get_invalid_files(bfilelist, invalid_files);
 		
 		printf("validating parameters...");
 		
-		if(total_invalid)
+		if(strvec_get_lines(invalid_files))
 		{
 				_show_invalid_files(invalid_files);
 				strvec_destroy(&invalid_files);
