@@ -18,12 +18,12 @@ typedef struct
   long lenght;
 } FILE_STRUCT;
 
-FILE_STRUCT*  f_init_file(char* file_name);
-void          f_destroy_file(FILE_STRUCT** fs);
-BOOL          f_file_exists(char* name);
-BOOL          f_start_buffer(FILE_STRUCT* fs);
-BOOL          f_openr_file(FILE_STRUCT* fs);
-BOOL          f_close_file(FILE_STRUCT* fs);
-char*         f_get_fs_buffer(FILE_STRUCT* fs);
+FILE_STRUCT*  fst_alloc(char* file_name);
+void          fst_destroy(FILE_STRUCT** fs);
+BOOL          fst_file_exists(char* name);
+BOOL          fst_start_buffer(FILE_STRUCT* fs);
+BOOL          fst_openr(FILE_STRUCT* fs);
+BOOL          fst_close(FILE_STRUCT* fs);
+char*         fst_get_fstbuff(FILE_STRUCT* fs);
 
 #endif

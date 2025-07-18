@@ -40,7 +40,7 @@ int _get_invalid_files(strvec_t* filelist, strvec_t* to_invalid)
 {
 		for(short i =0; i<strvec_get_lines(filelist); i++)
 		{
-				if(!f_file_exists(filelist->_arr[i])) 
+				if(!fst_file_exists(filelist->_arr[i])) 
 						strvec_insert(to_invalid, filelist->_arr[i]);	
 		}
 		return strvec_get_lines(to_invalid);
