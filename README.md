@@ -15,3 +15,5 @@ git clone https://github.com/KiamMota/shmake.git
 cd shmake
 mkdir build && cd build
 cmake .. && make
+```
+Se more about ShellMake [here](docs/Hello.md).
