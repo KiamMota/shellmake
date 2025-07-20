@@ -1,5 +1,7 @@
 #include "pipeline/init_argv.h"
 #include <string.h>
+#include "pipeline/lexer.h"
+
 
 // ==> this function gets the filelist getted by the argv and returns a strvec_t and
 // existing files
@@ -114,6 +116,13 @@ void init_argv(int argn, char** argv)
 		}
 
 		printf("	done.\n");
+	
+		FILE_STRUCT* file_context = fst_alloc(filelist->_arr[0]);
+		TOKEN_ARR* tk = malloc(sizeof(TOKEN_ARR));
+		tk->size = 0;
+		fst_openr(file_context);
+		fst_start_buffer(file_context);
+		test_lexing(file_context->buffer, tk);	
 
 }
 
