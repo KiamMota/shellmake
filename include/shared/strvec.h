@@ -4,7 +4,7 @@
 
 #include "shellmake.h"
 
-#include "stdlib.h"
+#include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 #ifndef _STRVEC_H_

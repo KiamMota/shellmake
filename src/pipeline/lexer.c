@@ -1,5 +1,4 @@
 #include "pipeline/lexer.h"
-#include <ctype.h>
 #include <string.h>
 
 char* substr(char* root, int st, int end)

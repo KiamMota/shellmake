@@ -1,5 +1,9 @@
 #include "shared/strvec.h"
 
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+
 strvec_t* strvec_alloc()
 {
 	strvec_t* strarr_st = malloc(sizeof(strvec_t));

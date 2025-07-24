@@ -1,6 +1,11 @@
 #include "shared/file/file_struct.h"
 #include "event_list.h"
 
+
+#include "shared/strvec.h"
+#include <stdlib.h>
+#include <string.h>
+
 FILE_STRUCT* fst_alloc(char* file_name)
 {  
   FILE_STRUCT* fs= malloc(sizeof(FILE_STRUCT));
