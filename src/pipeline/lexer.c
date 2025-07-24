@@ -19,7 +19,7 @@ void test_lexing(char *buffer, TOKEN_ARR* tk)
 
 		while(right <= len)
 		{
-				if(buffer[right] != 'a')
+				if(buffer[right] == 'a' && left == right)
 				{
 						char* sub = substr(buffer, left, right);
 						left = right;

@@ -2,7 +2,6 @@
 #include <string.h>
 #include "pipeline/lexer.h"
 
-
 // ==> this function gets the filelist getted by the argv and returns a strvec_t and
 // existing files
 

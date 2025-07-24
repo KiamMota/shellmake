@@ -7,9 +7,9 @@
 #include "event_list.h"
 #include <stdio.h>
 
-char*		_json_str_obj(cJSON* root, char* str_cmd);
-BOOL		_json_obj_bool(cJSON* root, char* str_cmd);
-strvec_t*	_json_obj_arrstr(cJSON* root, char* str_cmd);
+static char*		_json_str_obj(cJSON* root, char* str_cmd);
+static BOOL		_json_obj_bool(cJSON* root, char* str_cmd);
+static strvec_t*	_json_obj_arrstr(cJSON* root, char* str_cmd);
 
 /*==================================*/ 
 /*==================================*/ 
