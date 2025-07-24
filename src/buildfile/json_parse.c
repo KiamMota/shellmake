@@ -12,8 +12,6 @@ static BOOL		_json_obj_bool(cJSON* root, char* str_cmd);
 static strvec_t*	_json_obj_arrstr(cJSON* root, char* str_cmd);
 
 /*==================================*/ 
-/*==================================*/ 
-/*==================================*/ 
 
 void bcmd_json_parse(BUILD_CMD* bcmd, char* buffer)
 {
@@ -31,8 +29,6 @@ void bcmd_json_parse(BUILD_CMD* bcmd, char* buffer)
 		bcmd->cmd_required_root = _json_obj_bool(json_parse, BCMD_REQUIRED_ROOT);
 		bcmd->cmd_minimum_version_required = _json_str_obj(json_parse, "a");
 }
-/*==================================*/ 
-/*==================================*/
 /*==================================*/ 
 
 BOOL _json_obj_bool(cJSON* root, char* str_cmd)
