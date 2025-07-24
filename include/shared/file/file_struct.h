@@ -1,8 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-#include "shared/strvec.h"
 
 #include "shared/shellmake.h"
 #include "shared/file/string_validation.h"
@@ -20,6 +17,7 @@ typedef struct
 
 FILE_STRUCT*  fst_alloc(char* file_name);
 void          fst_destroy(FILE_STRUCT** fs);
+BOOL 					fst_file_is_empty(char* file_name);
 BOOL          fst_file_exists(char* name);
 BOOL          fst_start_buffer(FILE_STRUCT* fs);
 BOOL          fst_openr(FILE_STRUCT* fs);

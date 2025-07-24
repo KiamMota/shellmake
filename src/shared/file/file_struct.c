@@ -3,6 +3,7 @@
 
 
 #include "shared/strvec.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -25,6 +26,15 @@ void fst_destroy(FILE_STRUCT** fs)
     free(*fs);
     *fs = NULL;
   }
+}
+
+BOOL fst_file_is_empty(char* file_name)
+{	
+	FILE* fs = fopen(file_name, "r");
+	fseek(fs, 0, SEEK_END);
+	long fsize = ftell(fs);
+	if(fsize == 0 || fsize < 0) return TRUE;
+	return FALSE;
 }
 
 BOOL fst_file_exists(char* name)

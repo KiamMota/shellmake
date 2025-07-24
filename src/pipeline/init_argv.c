@@ -115,7 +115,9 @@ void init_argv(int argn, char** argv)
 		}
 
 		printf("	done.\n");
-	
+
+
+
 		FILE_STRUCT* file_context = fst_alloc(filelist->_arr[0]);
 		TOKEN_ARR* tk = malloc(sizeof(TOKEN_ARR));
 		tk->size = 0;
